@@ -3,8 +3,7 @@ import Link from 'next/link'
 import PostCard from '../post-card'
 import Image from 'next/image'
 
-export const revalidate = 0
-export const dynamic = 'force-dynamic' // wymusza SSR
+
 
 interface Post {
 	id: number
@@ -16,7 +15,9 @@ interface Schema {
 	posts: Post[]
 }
 
-const directus = createDirectus<Schema>(process.env.DIRECTUS_API_ENDPOINT!).with(rest())
+const directus = createDirectus<Schema>(process.env.DIRECTUS_API_ENDPOINT!).with(rest({
+	onRequest: (options) => ({ ...options, cache: 'no-store' }),
+}))
 
 const Reviews = async () => {
 	const posts = await directus.request(
