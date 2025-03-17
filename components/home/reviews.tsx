@@ -3,6 +3,8 @@ import Link from 'next/link'
 import PostCard from '../post-card'
 import Image from 'next/image'
 
+export const revalidate = 1
+
 interface Post {
 	id: number
 	title: string
