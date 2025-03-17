@@ -16,7 +16,6 @@ interface Schema {
 const directus = createDirectus<Schema>(process.env.DIRECTUS_API_ENDPOINT!).with(rest())
 
 const Reviews = async () => {
-	// Pobranie danych dynamicznie
 	const posts = await directus.request(
 		readItems('posts', {
 			filter: { status: { _eq: 'published' } },
