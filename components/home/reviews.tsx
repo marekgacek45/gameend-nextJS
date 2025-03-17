@@ -3,7 +3,8 @@ import Link from 'next/link'
 import PostCard from '../post-card'
 import Image from 'next/image'
 
-export const revalidate = 1
+export const revalidate = 0
+export const dynamic = 'force-dynamic' // wymusza SSR
 
 interface Post {
 	id: number
