@@ -32,7 +32,7 @@ const Reviews = async () => {
 				<div className='flex justify-between'>
 					<div className='flex flex-col gap-6'>
 						<span className='uppercase font-semibold font-accent'>(Reviews)</span>
-						<h2 className='text-5xl font-heading font-black uppercase'>Find your sound</h2>
+						<h2 className='text-5xl font-heading font-black uppercase'>Najnowsze recenzje</h2>
 					</div>
 
 					<Link className='font-heading font-medium self-end flex justify-center items-center gap-2 text-xl relative w-fit pb-1 after:block after:absolute after:h-[3px] after:bg-primary-400 after:w-full after:bottom-0 after:mt-2 after:scale-x-100 hover:after:scale-x-0 after:transition after:duration-300 after:origin-right uppercase group' href='#'>
