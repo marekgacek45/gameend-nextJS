@@ -5,7 +5,33 @@ import React from 'react'
 import arrowRight from '@/public/icons/arrow-right.svg'
 import PostCard from '../post-card'
 
+import { createDirectus, readItems, rest } from '@directus/sdk'
 
+export const revalidate = 60
+
+interface Post {
+	id: number
+	title: string
+	content: string
+}
+
+interface Schema {
+	posts: Post[]
+}
+
+const directus = createDirectus<Schema>(process.env.DIRECTUS_API_ENDPOINT!).with(rest())
+
+const posts = await directus.request(
+	readItems('posts', {
+		filter: { status: { _eq: 'published' } },
+		sort: ['-date_created'],
+		fields: ['id', 'title', 'date_created','slug','description','thumbnail','type.*','categories.*','categories.post_categories_id.title','categories.post_categories_id.slug'],
+		// fields: ['*'],
+		limit: 4,
+	})
+)
+
+console.log(posts)
 
 const Reviews = () => {
 	return (
@@ -32,11 +58,14 @@ const Reviews = () => {
 				</div>
 
 				<div className='grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6'>
+					{posts.map(post => (
+						<PostCard key={post.id} post={post} />
+					))}
 
+					{/* <PostCard/> */}
+					{/* <PostCard/>
 					<PostCard/>
-					<PostCard/>
-					<PostCard/>
-					<PostCard/>
+					<PostCard/> */}
 				</div>
 			</div>
 		</section>
