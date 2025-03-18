@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { Rubik, Roboto_Mono, Press_Start_2P } from 'next/font/google'
 import './globals.css'
 import Header from '@/components/header'
-import { ThemeProvider } from '@/components/theme-provider'
+import Footer from '@/components/footer'
 
 const rubik = Rubik({
 	weight: ['300', '400', '500', '600', '700', '800', '900'], // Wszystkie dostępne wagi
@@ -25,19 +25,18 @@ export const metadata: Metadata = {
 	description: 'i jedziemy...',
 }
 
-const  RootLayout =({
+const RootLayout = ({
 	children,
 }: Readonly<{
 	children: React.ReactNode
 }>) => {
 	return (
 		<html lang='pl' suppressHydrationWarning>
-			<meta name="apple-mobile-web-app-title" content="gameend" />
+			<meta name='apple-mobile-web-app-title' content='gameend' />
 			<body className={`${rubik.variable} ${robotoMono.variable} ${pressStart.variable} antialiased`}>
-				<ThemeProvider attribute='class' defaultTheme='system' enableSystem disableTransitionOnChange>
-					<Header />
-					{children}
-				</ThemeProvider>
+				<Header />
+				{children}
+				<Footer />
 			</body>
 		</html>
 	)

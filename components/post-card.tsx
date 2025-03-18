@@ -4,13 +4,14 @@ import React from 'react'
 
 import arrowRight from '@/public/icons/arrow-right.svg'
 
-import dummyImage from '@/public/assets/review.jpg'
+import { Post } from '@/lib/schemas'
+import { formatDate, getAssetUrl } from '@/lib/utils'
+import Badge from './badge'
 
-// const PostCard = ({ post: { id, title, slug, date_created,description,thumbnail,type } }) => {
-const PostCard = ({ post }) => {
+const PostCard = ({ post: {  title, slug, date_created,description,thumbnail,type,categories } } : {post: Post}) => {
 	
 
-	const categories = post.categories.map(category => {
+	const postCategories = categories.map(category => {
 		return category.post_categories_id
 	})
 
@@ -18,45 +19,39 @@ const PostCard = ({ post }) => {
 
 	return (
 		<div className='relative rounded-lg'>
+			
 			<div className='absolute inset-0  bg-black rounded-lg -z-10'></div>
 
 			<Link
-				href={`/blog/${post.slug}`}
+				href={`/blog/${slug}`}
 				className='group relative z-10 block border-2 border-black rounded-lg hover:-translate-y-1 hover:translate-x-1 duration-300 bg-white'>
 				<div className='p-3 flex flex-col justify-start items-start gap-3  '>
 					<Image
-						src={`${process.env.DIRECTUS_API_ENDPOINT}/assets/${post.thumbnail}`}
-						alt={post.title}
+						src={getAssetUrl(thumbnail)}
+						alt={title}
 						width={350}
 						height={200}
 						className='border-2 border-black rounded-lg w-full max-h-[200px] object-cover object-center'
 					/>
 
-					<div className='border-2 bg-yellow-300 px-4 py-1 rounded-sm'>
-						<span className='uppercase font-accent text-xs'>{post.type.title}</span>
-					</div>
+					
+					<Badge title={type.title} />
 					<span className='text-sm font-medium uppercase'>
-						{new Date(post.date_created).toLocaleDateString('pl-PL', {
-							day: 'numeric',
-							month: 'long',
-							year: 'numeric',
-						})}
+						{formatDate(date_created)}
 					</span>
-					<h3 className='line-clamp-2 font-heading text-2xl leading-8 uppercase font-medium'>{post.title}</h3>
-					<p className='line-clamp-4 text-sm'>{post.description}</p>
+					<h3 className='line-clamp-2 font-heading text-2xl leading-8 uppercase font-medium min-h-[64px]'>{title}</h3>
+					<p className='line-clamp-4 text-sm min-h-[80px]'>{description}</p>
 				</div>
 
 				<div className='flex justify-between items-center border-t-2 border-black w-full  rounded-b-lg'>
 					<div className='flex flex-wrap justify-start items-center gap-2 p-3'>
-						{categories.slice(0, 2).map(category => (
-							<div key={category.slug} className='border-2 bg-yellow-300 px-2 rounded-sm'>
-								<span className='uppercase font-accent text-[10px]'>{category.title}</span>
-							</div>
+						{postCategories.slice(0, 2).map(category => (
+							
+							<Badge key={category.slug} size={'small'} title={category.title} />
 						))}
-						{categories.length > 2 && (
-							<div className='border-2 bg-yellow-300 px-2 rounded-sm'>
-								<span className='uppercase font-accent text-[10px]'>+{categories.length - 2}</span>
-							</div>
+						{postCategories.length > 2 && (
+							
+							<Badge  size={'small'} title={`+${postCategories.length - 2}`} />
 						)}
 					</div>
 					<div className='border-l-2 overflow-hidden relative group h-full p-7'>

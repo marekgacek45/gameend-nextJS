@@ -1,30 +1,29 @@
-import { createDirectus, readItems, rest } from '@directus/sdk'
+import {  readItems } from '@directus/sdk'
 import Link from 'next/link'
 import PostCard from '../post-card'
 import Image from 'next/image'
 
+import { Post } from '@/lib/schemas'
+import directus from '@/lib/directus'
 
 
-interface Post {
-	id: number
-	title: string
-	content: string
-}
-
-interface Schema {
-	posts: Post[]
-}
-
-const directus = createDirectus<Schema>(process.env.DIRECTUS_API_ENDPOINT!).with(rest({
-	onRequest: (options) => ({ ...options, cache: 'no-store' }),
-}))
 
 const Reviews = async () => {
-	const posts = await directus.request(
+	const posts = await directus.request<Post[]>(
 		readItems('posts', {
 			filter: { status: { _eq: 'published' } },
 			sort: ['-date_created'],
-			fields: ['id', 'title', 'date_created', 'slug', 'description', 'thumbnail', 'type.*', 'categories.*', 'categories.post_categories_id.title', 'categories.post_categories_id.slug'],
+			fields: [
+				'title',
+				'date_created',
+				'slug',
+				'description',
+				'thumbnail',
+				'type.*',
+				'categories.*',
+				'categories.post_categories_id.title',
+				'categories.post_categories_id.slug',
+			],
 			limit: 4,
 		})
 	)
@@ -38,15 +37,23 @@ const Reviews = async () => {
 						<h2 className='text-5xl font-heading font-black uppercase'>Najnowsze recenzje</h2>
 					</div>
 
-					<Link className='font-heading font-medium self-end flex justify-center items-center gap-2 text-xl relative w-fit pb-1 after:block after:absolute after:h-[3px] after:bg-primary-400 after:w-full after:bottom-0 after:mt-2 after:scale-x-100 hover:after:scale-x-0 after:transition after:duration-300 after:origin-right uppercase group' href='#'>
-						<Image src='/icons/arrow-right.svg' alt='' width={32} height={32} className='group-hover:-rotate-45 duration-300 size-8' />
+					<Link
+						className='font-heading font-medium self-end flex justify-center items-center gap-2 text-xl relative w-fit pb-1 after:block after:absolute after:h-[3px] after:bg-primary-400 after:w-full after:bottom-0 after:mt-2 after:scale-x-100 hover:after:scale-x-0 after:transition after:duration-300 after:origin-right uppercase group'
+						href='#'>
+						<Image
+							src='/icons/arrow-right.svg'
+							alt=''
+							width={32}
+							height={32}
+							className='group-hover:-rotate-45 duration-300 size-8'
+						/>
 						View all shows
 					</Link>
 				</div>
 
 				<div className='grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6'>
 					{posts.map(post => (
-						<PostCard key={post.id} post={post} />
+						<PostCard key={post.slug} post={post} />
 					))}
 				</div>
 			</div>
