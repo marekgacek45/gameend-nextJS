@@ -1,9 +1,11 @@
 import Reviews from '@/components/home/reviews'
-import Image from 'next/image'
+import Ribbon from '@/components/ribbon'
+
 
 const Home = () => {
 	return (
 		<>
+			<Ribbon />
 			<Reviews />
 		</>
 	)

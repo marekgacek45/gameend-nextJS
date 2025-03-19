@@ -14,7 +14,7 @@ const Footer = () => {
 					art, culture and resilience through our programming.
 				</p>
 			</div>
-			<div className='flex flex-col sm:flex-ro justify-between items-center px-8 py-4 gap-4 sm:gap-0 font-accent font-bold uppercase text-[10px]'>
+			<div className='flex flex-col sm:flex-row justify-between items-center  px-8 py-4 gap-4 sm:gap-0 font-accent font-bold uppercase text-[10px]'>
 				<span className='  '>© {currentYear} gameend</span>
 
 				<span>

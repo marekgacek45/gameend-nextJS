@@ -162,7 +162,7 @@
 		@apply font-heading font-semibold uppercase text-xl hover:bg-black rounded-lg px-4 py-2 lg:p-2 hover:text-font-light border-2 lg:border-none;
 	}
 	.nav-link--active {
-		@apply font-heading font-semibold uppercase text-xl bg-red-500  rounded-lg px-4 py-2 lg:p-2 text-white hover:bg-black hover:text-font-light border-2 lg:border-none;
+		@apply font-heading font-semibold uppercase text-xl bg-black rounded-lg px-4 py-2 lg:p-2 text-white hover:bg-black hover:text-font-light border-2 lg:border-none;
 	}
 }
 
