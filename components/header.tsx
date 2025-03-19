@@ -47,7 +47,7 @@ const Header = () => {
 						<Sheet>
 							<SheetTrigger
 								aria-label='Otwórz menu'
-								className='flex justify-center items-center bg-secondary-400 rounded-md cursor-pointer'>
+								className='flex justify-center items-center bg-secondary-400 rounded-md cursor-pointer text'>
 								{/* <Hamburger /> */}
 								<Image src={Menu} alt='' width={40} height={40} className='size-10' />
 							</SheetTrigger>
@@ -55,7 +55,7 @@ const Header = () => {
 								<SheetHeader className='px-0'>
 									<SheetTitle>
 										<SheetClose asChild>
-											<Link href='/' className='flex justify-start items-center gap-3 tracking-wider'>
+											<Link href='/' className='flex justify-start items-center gap-3 tracking-wider '>
 												<Image src={logo} alt='/' width={60} height={60} className='size-14' />
 												<span className='font-accent text-sm font-light'>gameend.pl</span>
 											</Link>
