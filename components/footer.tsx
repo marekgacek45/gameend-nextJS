@@ -6,7 +6,7 @@ const Footer = () => {
 	const currentYear = new Date().getFullYear()
 
 	return (
-		<footer className='bg-ownOrange-400'>
+		<footer className='bg-ownOrange-400 pt-50'>
 			<div className='border-y-2 border-black py-4 px-8  text-center '>
 				<p>
 					RTRFM broadcasts from Whadjuk Noongar Boodjar, where sovereignty was never ceded. We pay our respects to
