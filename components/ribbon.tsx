@@ -12,7 +12,7 @@ const Ribbon = ({textFirst,textSecond,className,speed} : {textFirst: string, tex
         
         <div className='flex  items-center justify-center gap-4 mr-4'>
 
-        <span className='text-6xl font-heading font-bold uppercase '>• {textFirst} •</span>
+        <span className='text-6xl font-heading font-bold uppercase text'>• {textFirst} •</span>
         <span className='text-5xl font-accent font-medium uppercase text-ownPurple-400 mt-1 tracking-tight
 '>{textSecond}</span>
         </div>

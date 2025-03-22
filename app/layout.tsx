@@ -35,7 +35,10 @@ const RootLayout = ({
 			<meta name='apple-mobile-web-app-title' content='gameend' />
 			<body className={`${rubik.variable} ${robotoMono.variable} ${pressStart.variable} antialiased`}>
 				<Header />
+				<main className='mt-32'>
+
 				{children}
+				</main>
 				<Footer />
 			</body>
 		</html>

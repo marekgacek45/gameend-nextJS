@@ -22,15 +22,15 @@ const Header = () => {
 	]
 
 	return (
-		<header className='bg-white  '>
-			<div className='border-b-2 border-black  flex justify-between items-center max-w-screen-max mx-auto max:border-x-2 h-[80px]'>
-				<div className='px-8 border-r-2 border-black  flex justify-center items-center h-full'>
+		<header className='bg-white  fixed left-0 right-0 top-0 z-50'>
+			<div className='border-b-3 border-black  flex justify-between items-center max-w-screen-max mx-auto max:border-x-2 h-[80px]'>
+				<div className='px-8 border-r-3 border-black  flex justify-center items-center h-full '>
 					<Link href='/'>
-						<Image src={logo} alt='gamened.pl' width={60} height={60} className='size-15' />
+						<Image src={logo} alt='gamened.pl' width={60} height={60} className='size-15 ' />
 					</Link>
 				</div>
 
-				<div className='border-l-2 border-black   h-full flex justify-center items-center'>
+				<div className='border-l-3 border-black   h-full flex justify-center items-center'>
 					<nav className=' hidden lg:flex px-8'>
 						<ul className='flex justify-center items-center gap-8'>
 							{links.map(link => (
