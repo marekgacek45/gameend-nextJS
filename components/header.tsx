@@ -17,8 +17,9 @@ const Header = () => {
 	const links = [
 		{ name: 'Home', href: '/' },
 		{ name: 'Blog', href: '/blog' },
-		{ name: 'About', href: '/about' },
-		{ name: 'Contact', href: '/contact' },
+		{ name: 'PlayStation', href: '/blog/play-station' },
+		{ name: 'Nintendo', href: '/blog/nintendo' },
+		{ name: 'Artykuły', href: '/blog/artykuly' },
 	]
 
 	return (

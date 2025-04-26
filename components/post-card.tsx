@@ -4,7 +4,7 @@ import React from 'react'
 
 import arrowRight from '@/public/icons/arrow-right.svg'
 
-import { Post } from '@/lib/schemas'
+import { Post } from '@/types'
 import { formatDate, getAssetUrl } from '@/lib/utils'
 import Badge from './badge'
 

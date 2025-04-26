@@ -1,45 +1,33 @@
-import {  readItems } from '@directus/sdk'
-import Link from 'next/link'
-import PostCard from '../post-card'
+import { Post } from '@/types'
+
 import Image from 'next/image'
+import Link from 'next/link'
 
-import { Post } from '@/lib/schemas'
-import directus from '@/lib/directus'
+import PostCard from '@/components/post-card'
 
 
+type Props = {
+	preheading: string
+	heading: string
+	link: string
+	posts: Post[]
+}
 
-const Reviews = async () => {
-	const posts = await directus.request<Post[]>(
-		readItems('posts', {
-			filter: { status: { _eq: 'published' } },
-			sort: ['-date_created'],
-			fields: [
-				'title',
-				'date_created',
-				'slug',
-				'description',
-				'thumbnail',
-				'type.*',
-				'categories.*',
-				'categories.post_categories_id.title',
-				'categories.post_categories_id.slug',
-			],
-			limit: 4,
-		})
-	)
+
+const PostsSection = async ({ preheading,heading,link,posts }:  Props ) => {
 
 	return (
 		<section className='max-w-screen-max mx-auto px-8 py-10'>
 			<div className='space-y-12'>
 				<div className='flex justify-between'>
 					<div className='flex flex-col gap-6'>
-						<span className='uppercase font-semibold font-accent'>(Reviews)</span>
-						<h2 className='text-5xl font-heading font-black uppercase text'>Najnowsze recenzje</h2>
+						<span className='uppercase font-semibold font-accent'>({preheading})</span>
+						<h2 className='text-5xl font-heading font-black uppercase text'>{heading}</h2>
 					</div>
 
 					<Link
 						className='font-heading font-medium self-end flex justify-center items-center gap-2 text-xl relative w-fit pb-1 after:block after:absolute after:h-[3px] after:bg-primary-400 after:w-full after:bottom-0 after:mt-2 after:scale-x-100 hover:after:scale-x-0 after:transition after:duration-300 after:origin-right uppercase group'
-						href='#'>
+						href={link}>
 						<Image
 							src='/icons/arrow-right.svg'
 							alt=''
@@ -47,7 +35,7 @@ const Reviews = async () => {
 							height={32}
 							className='group-hover:-rotate-45 duration-300 size-8'
 						/>
-						View all shows
+						Zobacz wszystkie
 					</Link>
 				</div>
 
@@ -61,4 +49,4 @@ const Reviews = async () => {
 	)
 }
 
-export default Reviews
+export default PostsSection
