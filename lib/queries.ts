@@ -14,6 +14,7 @@ export const getAllPosts = async () =>
 				'slug',
 				'description',
 				'thumbnail',
+				'featured',
 				'type.*',
 				'categories.*',
 				'categories.post_categories_id.title',

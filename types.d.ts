@@ -4,6 +4,7 @@ export interface Post  {
 	slug: string
 	description: string
 	thumbnail: string
+    featured: boolean
 	date_created: string
 	type: {
 		id: string
