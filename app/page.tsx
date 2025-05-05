@@ -9,7 +9,7 @@ import PostsSectionSecondary from '@/components/posts-section-secondary'
 const Home = async () => {
 	const posts = await getAllPosts()
 
-	// const featuredPosts = posts.filter(post => post.featured).slice(0, 6)
+	const featuredPosts = posts.filter(post => post.featured).slice(0, 6)
 
 	const reviews = posts.filter(post => post.type?.slug === 'recenzja').slice(0, 4)
 
@@ -20,11 +20,11 @@ const Home = async () => {
 	// const nintendoPosts = posts.filter(post => post.categories.some(cat => cat.post_categories_id.slug === 'nintendo'))
 
 	
-	console.log(articles)
+	console.log(featuredPosts)
 
 	return (
 		<>
-			<Features />
+			<Features posts={featuredPosts}/>
 
 			<Ribbon textFirst='The Sound' textSecond='alternative' />
 

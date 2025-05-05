@@ -14,5 +14,5 @@ export const formatDate = (date:string) => {
 }
 
 export const getAssetUrl = (thumbnail: string) => {
-	return `${process.env.DIRECTUS_API_ENDPOINT}/assets/${thumbnail}`;
+	return `https://studio.gameend.pl/assets/${thumbnail}`;
 };
