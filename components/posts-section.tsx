@@ -17,7 +17,7 @@ type Props = {
 const PostsSection = async ({ preheading,heading,link,posts }:  Props ) => {
 
 	return (
-		<section className='max-w-screen-max mx-auto px-8 py-20'>
+		<section className='max-w-screen-max mx-auto px-8 py-20 bg-ownYellow-600'>
 			<div className='space-y-12'>
 				<div className='flex justify-between'>
 					<div className='flex flex-col gap-6'>

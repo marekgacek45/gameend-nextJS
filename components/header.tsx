@@ -15,11 +15,13 @@ const Header = () => {
 	const pathname = usePathname()
 
 	const links = [
-		{ name: 'Home', href: '/' },
+	
 		{ name: 'Blog', href: '/blog' },
-		{ name: 'PlayStation', href: '/blog/play-station' },
 		{ name: 'Nintendo', href: '/blog/nintendo' },
+		{ name: 'PlayStation', href: '/blog/play-station' },
 		{ name: 'Artykuły', href: '/blog/artykuly' },
+		// { name: 'Kolekcja', href: '/kolekcja' },
+		{ name: 'Sklepik', href: 'https://www.olx.pl/oferty/uzytkownik/2Mdl13/?tab=ads' },
 	]
 
 	return (
