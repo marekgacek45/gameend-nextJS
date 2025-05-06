@@ -69,6 +69,10 @@
 	.nav-link--active {
 		@apply font-heading font-semibold uppercase text-xl bg-black rounded-lg px-4 py-2 lg:p-2 text-white hover:bg-black hover:text-font-light border-2 lg:border-none;
 	}
+
+	.custom-border {
+		@apply rounded-lg border-3 border-black 
+	}
 }
 
 /* .dark {

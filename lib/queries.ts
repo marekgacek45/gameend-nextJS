@@ -22,3 +22,32 @@ export const getAllPosts = async () =>
 			],
 		})
 	)
+
+export const getAllGames = async () =>
+	await directus.request<Game[]>(
+		readItems('games', {
+			fields: ['*'],
+		})
+	)
+
+	export const getCurrentGame = async () => {
+		const games = await directus.request<Game[]>(
+			readItems('games', {
+				filter: { currently_played: { _eq: true } },
+				fields: ['*'],
+				limit: 1,
+			})
+		);
+		return games[0]; 
+	};
+
+	export const getNextGame = async () => {
+		const games = await directus.request<Game[]>(
+			readItems('games', {
+				filter: { next_to_play: { _eq: true } },
+				fields: ['*'],
+				limit: 1,
+			})
+		);
+		return games[0]; 
+	};

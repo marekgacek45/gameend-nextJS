@@ -22,3 +22,10 @@ export interface Post  {
 		}
 	}[]
 }
+
+export interface Game {
+	currently_played: boolean
+	next_to_play: boolean
+	cover: string
+	title: string
+	platform: string}

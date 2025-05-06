@@ -1,15 +1,18 @@
-import { getAllPosts } from '@/lib/queries'
+import {  getAllPosts, getCurrentGame, getNextGame } from '@/lib/queries'
 
 import Features from '@/components/home/features'
 import PostsSection from '@/components/posts-section'
 import Ribbon from '@/components/ribbon'
 import PostsSectionSecondary from '@/components/posts-section-secondary'
-import Shop from '@/components/shop'
 import Link from 'next/link'
 import Image from 'next/image'
 import arrowRightIcon from '@/public/assets/icons/arrow-right--dark.svg'
 import Newests from '@/components/newests'
 const Home = async () => {
+	const currentGame = await getCurrentGame()
+
+	const nextGame = await getNextGame()
+
 	const posts = await getAllPosts()
 
 	const featuredPosts = posts.filter(post => post.featured).slice(0, 6)
@@ -19,26 +22,23 @@ const Home = async () => {
 	// const articles = posts.filter(post => post.type?.slug === 'artykul' && post.featured).slice(0, 2)
 	const articles = posts.filter(post => post.type?.slug === 'artykul').slice(0, 2)
 
-	const playStationPosts = posts.filter(post => post.categories.some(cat => cat.post_categories_id.slug === 'play-station'))
+	const playStationPosts = posts.filter(post =>
+		post.categories.some(cat => cat.post_categories_id.slug === 'play-station')
+	)
 	const nintendoPosts = posts.filter(post => post.categories.some(cat => cat.post_categories_id.slug === 'nintendo'))
-
-	console.log(featuredPosts)
 
 	return (
 		<>
-			<Features posts={featuredPosts} />
+			<Features posts={featuredPosts} currentGame={currentGame} nextGame={nextGame} />
 
 			<Ribbon textFirst='The Sound' textSecond='alternative' />
 
 			<Newests preheading='dasd' heading='Najnowsze' posts={reviews} />
 
-			
-
 			<PostsSectionSecondary preheading='Artykuły' heading='Polecane artykuły' posts={articles} />
-			
+
 			<PostsSection preheading='Nintendo' heading='Najnowsze recenzje' link='#' posts={reviews} />
 			<PostsSection preheading='PlayStation' heading='Najnowsze recenzje' link='#' posts={reviews} />
-
 
 			<section className='max-w-screen-max mx-auto px-8 py-20'>
 				<div className='grid grid-cols-3 gap-12'>
