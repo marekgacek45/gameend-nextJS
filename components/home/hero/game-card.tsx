@@ -28,6 +28,7 @@ const GameCard = ({ color, heading, cover, title }: Props) => {
 						width={400}
 						height={200}
 						className='h-full w-full rounded-lg object-cover object-center xl:max-h-[218px]'
+						sizes="(min-width: 1290px) 400px, (min-width: 1024px) 600px, 100vw"
 						priority
 					/>
 				</div>

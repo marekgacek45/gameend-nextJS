@@ -8,6 +8,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import arrowRightIcon from '@/public/assets/icons/arrow-right--dark.svg'
 import LatestPosts from '@/components/home/latest-posts'
+import ROUTES from '@/lib/routes'
 const Home = async () => {
 	const currentGame = await getCurrentGame()
 
@@ -37,7 +38,7 @@ const Home = async () => {
 			<Ribbon textFirst='blog' textSecond='gameend' />
 
 			{/* finished */}
-			<LatestPosts preheading='zawsze coś ciekawego' heading='Najświeższe posty' posts={latestPosts} />
+			<LatestPosts preheading='zawsze coś ciekawego' heading='Najświeższe posty'  posts={latestPosts} />
 
 			<PostsSectionSecondary preheading='coś ciekawego' heading='Polecane artykuły' posts={articles} />
 

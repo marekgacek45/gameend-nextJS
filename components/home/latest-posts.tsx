@@ -2,6 +2,8 @@
 
 import { Post } from '@/types'
 
+import ROUTES from '@/lib/routes'
+
 import Image from 'next/image'
 
 import Heading from '@/components/heading'
@@ -23,7 +25,7 @@ const LatestPosts = ({ preheading, heading, posts }: Props) => {
 	return (
 		<section className='max-w-screen-max mx-auto px-4 md:px-8 py-10 md:py-20 '>
 			<div className='space-y-12'>
-				<Heading preheading={preheading} heading={heading} />
+				<Heading preheading={preheading} heading={heading} link={ROUTES.blog.index}/>
 
 				<div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 '>
 					<PostCardBig post={firstPost} />
