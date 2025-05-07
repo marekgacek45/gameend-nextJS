@@ -1,4 +1,4 @@
-import {  getAllPosts, getCurrentGame, getNextGame } from '@/lib/queries'
+import { getAllPosts, getCurrentGame, getNextGame } from '@/lib/queries'
 
 import Features from '@/components/home/features'
 import PostsSection from '@/components/posts-section'
@@ -29,9 +29,10 @@ const Home = async () => {
 
 	return (
 		<>
+			{/* finished */}
 			<Features posts={featuredPosts} currentGame={currentGame} nextGame={nextGame} />
-
-			<Ribbon textFirst='The Sound' textSecond='alternative' />
+			{/* finished */}
+			<Ribbon textFirst='blog' textSecond='gameend' />
 
 			<Newests preheading='dasd' heading='Najnowsze' posts={reviews} />
 
