@@ -7,7 +7,7 @@ import PostsSectionSecondary from '@/components/posts-section-secondary'
 import Link from 'next/link'
 import Image from 'next/image'
 import arrowRightIcon from '@/public/assets/icons/arrow-right--dark.svg'
-import Newests from '@/components/newests'
+import LatestPosts from '@/components/home/latest-posts'
 const Home = async () => {
 	const currentGame = await getCurrentGame()
 
@@ -16,6 +16,8 @@ const Home = async () => {
 	const posts = await getAllPosts()
 
 	const featuredPosts = posts.filter(post => post.featured).slice(0, 6)
+
+	const latestPosts = posts.slice(0, 5)
 
 	const reviews = posts.filter(post => post.type?.slug === 'recenzja').slice(0, 5)
 
@@ -34,9 +36,10 @@ const Home = async () => {
 			{/* finished */}
 			<Ribbon textFirst='blog' textSecond='gameend' />
 
-			<Newests preheading='dasd' heading='Najnowsze' posts={reviews} />
+			{/* finished */}
+			<LatestPosts preheading='zawsze coś ciekawego' heading='Najświeższe posty' posts={latestPosts} />
 
-			<PostsSectionSecondary preheading='Artykuły' heading='Polecane artykuły' posts={articles} />
+			<PostsSectionSecondary preheading='coś ciekawego' heading='Polecane artykuły' posts={articles} />
 
 			<PostsSection preheading='Nintendo' heading='Najnowsze recenzje' link='#' posts={reviews} />
 			<PostsSection preheading='PlayStation' heading='Najnowsze recenzje' link='#' posts={reviews} />
