@@ -17,14 +17,13 @@ const FeaturedPost = ({ post: { title, slug, thumbnail, description } }: { post:
 				<Image
 					src={getAssetUrl(thumbnail)}
 					alt={title}
-					fill
-					className='h-full w-full object-cover object-center max-h-[250px] sm:max-h-[500px] xl:max-h-none'
+					width={1200}
+					height={600}
+					className=' h-full w-full object-cover object-center max-h-[250px] sm:max-h-[500px] xl:max-h-none'
 					quality={60}
 					priority
-					sizes='(max-width: 640px) 100vw,
-         (max-width: 1024px) 100vw,
-         (max-width: 1280px) 1000px,
-         1200px'
+					sizes='(min-width: 1280px) 1200px, 100vw'
+				
 				/>
 			</div>
 

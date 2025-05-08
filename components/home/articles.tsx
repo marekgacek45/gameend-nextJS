@@ -1,13 +1,15 @@
 import { Post } from '@/types'
 
+import ROUTES from '@/lib/routes'
+
 import Image from 'next/image'
 import Link from 'next/link'
 
-import arrowRightIcon from '@/public/assets/icons/arrow-right--dark.svg'
-import Mario from '@/public/assets/mario.webp'
 import Heading from '@/components/heading'
 import PostCardSecondary from '@/components/postCard/post-card-secondary'
-import ROUTES from '@/lib/routes'
+
+import Mario from '@/public/assets/mario.webp'
+import arrowRightIcon from '@/public/assets/icons/arrow-right--dark.svg'
 
 type Props = {
 	preheading: string
@@ -15,7 +17,7 @@ type Props = {
 	link?: string
 	posts: Post[]
 }
-const PostsSectionSecondary = ({ preheading, heading, posts }: Props) => {
+const Articles = ({ preheading, heading, posts }: Props) => {
 	return (
 		<section className=' relative  max-w-screen-max mx-auto px-8 py-20 bg-black text-font-light'>
 			<Image src={Mario} alt='Mario Bros' className='hidden lg:block absolute right-12 top-6 z-0 w-[300px] ' />
@@ -51,4 +53,4 @@ const PostsSectionSecondary = ({ preheading, heading, posts }: Props) => {
 	)
 }
 
-export default PostsSectionSecondary
+export default Articles

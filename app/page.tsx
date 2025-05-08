@@ -9,6 +9,7 @@ import Image from 'next/image'
 import arrowRightIcon from '@/public/assets/icons/arrow-right--dark.svg'
 import LatestPosts from '@/components/home/latest-posts'
 import ROUTES from '@/lib/routes'
+import Articles from '@/components/home/articles'
 const Home = async () => {
 	const currentGame = await getCurrentGame()
 
@@ -20,10 +21,9 @@ const Home = async () => {
 
 	const latestPosts = posts.slice(0, 5)
 
-	const reviews = posts.filter(post => post.type?.slug === 'recenzja').slice(0, 5)
-
-	// const articles = posts.filter(post => post.type?.slug === 'artykul' && post.featured).slice(0, 2)
 	const articles = posts.filter(post => post.type?.slug === 'artykul').slice(0, 2)
+
+	const reviews = posts.filter(post => post.type?.slug === 'recenzja').slice(0, 5)
 
 	const playStationPosts = posts.filter(post =>
 		post.categories.some(cat => cat.post_categories_id.slug === 'play-station')
@@ -38,9 +38,11 @@ const Home = async () => {
 			<Ribbon textFirst='blog' textSecond='gameend' />
 
 			{/* finished */}
-			<LatestPosts preheading='zawsze coś ciekawego' heading='Najświeższe posty'  posts={latestPosts} />
+			<LatestPosts preheading='zawsze coś ciekawego' heading='Najświeższe posty' posts={latestPosts} />
 
-			<PostsSectionSecondary preheading='coś ciekawego' heading='Polecane artykuły' posts={articles} />
+			{/* finished */}
+			<Articles preheading='"publicystyka"' heading='Polecane artykuły' posts={articles} />
+			
 
 			<PostsSection preheading='Nintendo' heading='Najnowsze recenzje' link='#' posts={reviews} />
 			<PostsSection preheading='PlayStation' heading='Najnowsze recenzje' link='#' posts={reviews} />

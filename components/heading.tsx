@@ -6,6 +6,7 @@ type Props = {
 	preheading: string
 	heading: string
 	link?: string
+	
 }
 
 const Heading = ({ preheading, heading, link }: Props) => {
@@ -30,6 +31,7 @@ const Heading = ({ preheading, heading, link }: Props) => {
 					Zobacz wszystkie
 				</Link>
 			)}
+			
 		</div>
 	)
 }
