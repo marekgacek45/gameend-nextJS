@@ -6,10 +6,10 @@ import Ribbon from '@/components/ribbon'
 import PostsSectionSecondary from '@/components/posts-section-secondary'
 import Link from 'next/link'
 import Image from 'next/image'
-import arrowRightIcon from '@/public/assets/icons/arrow-right--dark.svg'
+
 import LatestPosts from '@/components/home/latest-posts'
-import ROUTES from '@/lib/routes'
 import Articles from '@/components/home/articles'
+import Categories from '@/components/home/categories'
 const Home = async () => {
 	const currentGame = await getCurrentGame()
 
@@ -25,11 +25,6 @@ const Home = async () => {
 
 	const reviews = posts.filter(post => post.type?.slug === 'recenzja').slice(0, 5)
 
-	const playStationPosts = posts.filter(post =>
-		post.categories.some(cat => cat.post_categories_id.slug === 'play-station')
-	)
-	const nintendoPosts = posts.filter(post => post.categories.some(cat => cat.post_categories_id.slug === 'nintendo'))
-
 	return (
 		<>
 			{/* finished */}
@@ -42,60 +37,17 @@ const Home = async () => {
 
 			{/* finished */}
 			<Articles preheading='"publicystyka"' heading='Polecane artykuły' posts={articles} />
-			
 
-			<PostsSection preheading='Nintendo' heading='Najnowsze recenzje' link='#' posts={reviews} />
-			<PostsSection preheading='PlayStation' heading='Najnowsze recenzje' link='#' posts={reviews} />
+			<PostsSection
+				preheading='giereczki'
+				heading='Najnowsze recenzje'
+				link='#'
+				posts={reviews}
+				color=''
+				cardColor='bg-white'
+			/>
 
-			<section className='max-w-screen-max mx-auto px-8 py-20'>
-				<div className='grid grid-cols-3 gap-12'>
-					<div className='bg-ownOrange-400 border-2 border-black rounded-lg flex flex-col gap-6 justify-center items-center text-center py-16'>
-						<h2 className='font-accent text-5xl  font-bold'>Nintendo</h2>
-						<Link
-							href='#'
-							className=' flex justify-center items-center gap-2 p-3 px-8 border-3 rounded-md border-black bg-ownOrange-800  uppercase font-medium group overflow-hidden'>
-							<Image
-								src={arrowRightIcon}
-								alt=''
-								className='  size-6 -translate-x-[250%] group-hover:translate-x-0 duration-300'
-							/>
-
-							<span>Zacznij czytanie</span>
-							<Image src={arrowRightIcon} alt='' className=' size-6   group-hover:translate-x-[250%] duration-300' />
-						</Link>
-					</div>
-					<div className='bg-ownOrange-400 border-2 border-black rounded-lg flex flex-col gap-6 justify-center items-center text-center py-16'>
-						<h2 className='font-accent text-5xl  font-bold'>PlayStation</h2>
-						<Link
-							href='#'
-							className=' flex justify-center items-center gap-2 p-3 px-8 border-3 rounded-md border-black bg-ownOrange-800  uppercase font-medium group overflow-hidden'>
-							<Image
-								src={arrowRightIcon}
-								alt=''
-								className='  size-6 -translate-x-[250%] group-hover:translate-x-0 duration-300'
-							/>
-
-							<span>Zacznij czytanie</span>
-							<Image src={arrowRightIcon} alt='' className=' size-6   group-hover:translate-x-[250%] duration-300' />
-						</Link>
-					</div>
-					<div className='bg-ownOrange-400 border-2 border-black rounded-lg flex flex-col gap-6 justify-center items-center text-center py-16'>
-						<h2 className='font-accent text-5xl font-bold'>Artykuły</h2>
-						<Link
-							href='#'
-							className=' flex justify-center items-center gap-2 p-3 px-8 border-3 rounded-md border-black bg-ownOrange-800  uppercase font-medium group overflow-hidden'>
-							<Image
-								src={arrowRightIcon}
-								alt=''
-								className='  size-6 -translate-x-[250%] group-hover:translate-x-0 duration-300'
-							/>
-
-							<span>Zacznij czytanie</span>
-							<Image src={arrowRightIcon} alt='' className=' size-6   group-hover:translate-x-[250%] duration-300' />
-						</Link>
-					</div>
-				</div>
-			</section>
+			<Categories />
 		</>
 	)
 }

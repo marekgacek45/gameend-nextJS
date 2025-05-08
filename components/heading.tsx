@@ -1,15 +1,17 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
+
+import arrowRight from '@/public/assets/icons/arrow-right--dark.svg'
+import arrowRightWhite from '@/public/assets/icons/arrow-right.svg'
 
 type Props = {
 	preheading: string
 	heading: string
 	link?: string
-	
+	lightArrow?: boolean
 }
 
-const Heading = ({ preheading, heading, link }: Props) => {
+const Heading = ({ preheading, heading, link, lightArrow }: Props) => {
 	return (
 		<div className='flex flex-col lg:flex-row justify-between gap-8 lg:gap-0'>
 			<div className='flex flex-col gap-6'>
@@ -22,7 +24,7 @@ const Heading = ({ preheading, heading, link }: Props) => {
 					className='font-heading font-medium lg:self-end flex justify-center items-center gap-2 text-xl relative w-fit pb-1 after:block after:absolute after:h-[3px] after:bg-primary-400 after:w-full after:bottom-0 after:mt-2 after:scale-x-100 hover:after:scale-x-0 after:transition after:duration-300 after:origin-right uppercase group'
 					href={link}>
 					<Image
-						src='/icons/arrow-right.svg'
+						src={lightArrow ? arrowRightWhite : arrowRight}
 						alt=''
 						width={32}
 						height={32}
@@ -31,7 +33,6 @@ const Heading = ({ preheading, heading, link }: Props) => {
 					Zobacz wszystkie
 				</Link>
 			)}
-			
 		</div>
 	)
 }

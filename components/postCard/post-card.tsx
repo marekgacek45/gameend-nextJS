@@ -6,9 +6,9 @@ import arrowRight from '@/public/icons/arrow-right.svg'
 
 import { Post } from '@/types'
 import { formatDate, getAssetUrl } from '@/lib/utils'
-import Badge from './badge'
+import Badge from '@/components/badge'
 
-const PostCard = ({ post: {  title, slug, date_created,description,thumbnail,type,categories } } : {post: Post}) => {
+const PostCard = ({ post: {  title, slug, date_created,description,thumbnail,type,categories },color } : {post: Post,color?:string}) => {
 	
 
 	const postCategories = categories.map(category => {
@@ -20,18 +20,18 @@ const PostCard = ({ post: {  title, slug, date_created,description,thumbnail,typ
 	return (
 		<div className='relative rounded-lg text-font-dark'>
 			
-			<div className='absolute inset-0  bg-black rounded-lg -z-10'></div>
+			<div className='absolute inset-0  bg-black rounded-lg z-10'></div>
 
 			<Link
 				href={`/blog/${slug}`}
-				className='group relative z-10 block border-2 border-black rounded-lg hover:-translate-y-1 hover:translate-x-1 duration-300 bg-white'>
+				className={`group relative z-10 block custom-border hover:-translate-y-1 hover:translate-x-1 duration-300 ${color}`}>
 				<div className='p-3 flex flex-col justify-start items-start gap-3  '>
 					<Image
 						src={getAssetUrl(thumbnail)}
 						alt={title}
 						width={350}
-						height={200}
-						className='border-2 border-black rounded-lg w-full max-h-[200px] object-cover object-center'
+						height={250}
+						className='custom-border w-full max-h-[250px] object-cover object-center'
 					/>
 
 					
@@ -43,7 +43,7 @@ const PostCard = ({ post: {  title, slug, date_created,description,thumbnail,typ
 					<p className='line-clamp-4 text-sm min-h-[80px]'>{description}</p>
 				</div>
 
-				<div className='flex justify-between items-center border-t-2 border-black w-full  rounded-b-lg'>
+				<div className='flex justify-between items-center border-t-3 border-black w-full  rounded-b-lg'>
 					<div className='flex flex-wrap justify-start items-center gap-2 p-3'>
 						{postCategories.slice(0, 2).map(category => (
 							
@@ -54,7 +54,7 @@ const PostCard = ({ post: {  title, slug, date_created,description,thumbnail,typ
 							<Badge  size={'small'} title={`+${postCategories.length - 2}`} />
 						)}
 					</div>
-					<div className='border-l-2 overflow-hidden relative group h-full p-7'>
+					<div className='border-l-3 overflow-hidden relative group h-full p-7'>
 						<Image
 							src={arrowRight}
 							alt=''
