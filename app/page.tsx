@@ -1,6 +1,6 @@
-//update queries
+// finished
 
-import { getAllPosts, getCurrentGame, getNextGame } from '@/lib/queries'
+import { getCurrentGame, getNextGame, getPosts } from '@/lib/queries'
 
 import Features from '@/components/home/features'
 import Ribbon from '@/components/ribbon'
@@ -11,18 +11,50 @@ import Categories from '@/components/home/categories'
 
 const Home = async () => {
 	const currentGame = await getCurrentGame()
-
 	const nextGame = await getNextGame()
 
-	const posts = await getAllPosts()
+	const featuredPosts = await getPosts({
+		filter: { featured: { _eq: true } },
+		fields: ['title', 'date_created', 'slug', 'thumbnail', 'description'],
+		limit: 6,
+	})
 
-	const featuredPosts = posts.filter(post => post.featured).slice(0, 6)
+	const latestPosts = await getPosts({
+		fields: [
+			'title',
+			'date_created',
+			'slug',
+			'thumbnail',
+			'type.*',
+			'categories.*',
+			'categories.post_categories_id.title',
+			'categories.post_categories_id.slug',
+		],
+		limit: 5,
+	})
 
-	const latestPosts = posts.slice(0, 5)
+	const articles = await getPosts({
+		filter: { type: { slug: { _eq: 'artykul' } } },
+		fields: ['title', 'slug', 'thumbnail', 'description'],
+		limit: 2,
+	})
 
-	const articles = posts.filter(post => post.type?.slug === 'artykul').slice(0, 2)
-
-	const reviews = posts.filter(post => post.type?.slug === 'recenzja').slice(0, 5)
+	const reviews = await getPosts({
+		filter: { type: { slug: { _eq: 'recenzja' } } },
+		fields: [
+			'title',
+			'date_created',
+			'slug',
+			'description',
+			'thumbnail',
+			'featured',
+			'type.*',
+			'categories.*',
+			'categories.post_categories_id.title',
+			'categories.post_categories_id.slug',
+		],
+		limit: 4,
+	})
 
 	return (
 		<>
@@ -46,7 +78,7 @@ const Home = async () => {
 				color=''
 				cardColor='bg-white'
 			/>
-
+			{/* finished */}
 			<Categories />
 		</>
 	)

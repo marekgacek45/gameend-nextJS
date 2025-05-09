@@ -69,7 +69,7 @@ const RootLayout = ({
 			<meta name='theme-color' content='#f2eded' />
 			<body className={`${rubik.variable} ${robotoMono.variable} ${pressStart.variable} antialiased`}>
 				<Header />
-				<main className=' mt-28 md:mt-32'>{children}</main>
+				<main className=' mt-28 md:mt-32'>{children}</main>q
 				<Footer />
 			</body>
 		</html>
