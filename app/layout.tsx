@@ -1,17 +1,17 @@
 import type { Metadata } from 'next'
 import { Rubik, Roboto_Mono, Press_Start_2P } from 'next/font/google'
-import './globals.css'
 import Header from '@/components/header'
 import Footer from '@/components/footer'
 
+import './globals.css'
+
 const rubik = Rubik({
-	weight: ['300', '400', '500', '600', '700', '800', '900'], // Wszystkie dostępne wagi
+	weight: ['300', '400', '500', '600', '700', '800', '900'],
 	variable: '--font-rubik',
 	subsets: ['latin'],
 })
 const robotoMono = Roboto_Mono({
-	weight: ['100', '200', '300', '400', '500', '600', '700'], // Wszystkie dostępne wagi
-	variable: '--font-roboto-mono',
+	weight: ['100', '200', '300', '400', '500', '600', '700'],
 	subsets: ['latin'],
 })
 const pressStart = Press_Start_2P({
@@ -21,8 +21,41 @@ const pressStart = Press_Start_2P({
 })
 
 export const metadata: Metadata = {
-	title: 'gameend',
-	description: 'i jedziemy...',
+	title: {
+		default: 'gameend - blog o grach',
+		template: '%s | gameend',
+	},
+	description:
+		'Blog o grach na  nintendo i playstation. Nie ma co więcej nawijać makaronu na uszy :)',
+	generator: 'Next.js',
+	applicationName: 'gameend - blog o grach',
+	referrer: 'origin-when-cross-origin',
+	keywords: [
+		'blog o grach','gry','nintendo','playstation','gameend','blog','gry nintendo','gry playstation','switch',
+	],
+	authors: { name: 'Marek Gacek', url: 'https://marekgacekdev.pl' },
+	creator: 'Marek Gacek',
+	publisher: 'Marek Gacek',
+	openGraph: {
+		title: 'gameend - blog o grach',
+		description:
+			'Blog o grach na  nintendo i playstation. Nie ma co więcej nawijać makaronu na uszy :)',
+		type: 'website',
+		locale: 'pl_PL',
+		url: 'https://gameend.pl/',
+		siteName: 'gameend - blog o grach',
+		images: [
+			{
+				url: 'https://gameend.pl/assets/logo.png',
+				width: 1200,
+				height: 630,
+				alt: 'gameend - blog o grach',
+			},
+		],
+	},
+	alternates: {
+		canonical: 'https://gameend.pl',
+	},
 }
 
 const RootLayout = ({
@@ -33,12 +66,10 @@ const RootLayout = ({
 	return (
 		<html lang='pl' suppressHydrationWarning>
 			<meta name='apple-mobile-web-app-title' content='gameend' />
+			<meta name='theme-color' content='#f2eded' />
 			<body className={`${rubik.variable} ${robotoMono.variable} ${pressStart.variable} antialiased`}>
 				<Header />
-				<main className=' mt-28 md:mt-32'>
-
-				{children}
-				</main>
+				<main className=' mt-28 md:mt-32'>{children}</main>
 				<Footer />
 			</body>
 		</html>

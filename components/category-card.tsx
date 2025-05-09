@@ -1,6 +1,8 @@
+//finished
+
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
+
 
 import arrowRight from '@/public/assets/icons/arrow-right--dark.svg'
 import arrowRightWhite from '@/public/assets/icons/arrow-right.svg'
@@ -16,7 +18,7 @@ type Props = {
 const CategoryCard = ({ link, title, cardColor, btnColor, lightArrow }: Props) => {
 	return (
 		<div
-			className={`   flex flex-col  justify-between items-center gap-8  py-16 text-center custom-border px-2  ${cardColor}`}>
+			className={`flex flex-col  justify-between items-center gap-8  py-16 text-center custom-border px-2  ${cardColor}`}>
 			<h2 className='font-accent text-3xl 2xl:text-5xl  font-medium'>{title}</h2>
 			<Link
 				href={link}

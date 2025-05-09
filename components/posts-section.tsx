@@ -1,3 +1,5 @@
+//finished
+
 import { Post } from '@/types'
 
 import PostCard from '@/components/postCard/post-card'

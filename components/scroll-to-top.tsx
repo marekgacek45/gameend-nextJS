@@ -1,6 +1,9 @@
+// finished
+
 'use client'
 
 import Image from 'next/image'
+
 import ArrowUp from 'pixelarticons/svg/arrow-up.svg'
 
 const ScrollToTop = () => {
@@ -9,12 +12,12 @@ const ScrollToTop = () => {
 	}
 
 	return (
-		<button onClick={scroll} className='flex justify-center items-center uppercase gap-1 cursor-pointer group'>
+		<button onClick={scroll} className='flex justify-center items-center gap-1 uppercase  cursor-pointer group'>
 			back to top
 			<div className='border rounded-full p-0.5'>
 				<Image
 					src={ArrowUp}
-					alt='Arrow Up'
+					alt=''
 					width={20}
 					height={20}
 					className='size-5 group-hover:rotate-360 duration-1000'

@@ -1,15 +1,14 @@
+//update queries
+
 import { getAllPosts, getCurrentGame, getNextGame } from '@/lib/queries'
 
 import Features from '@/components/home/features'
-import PostsSection from '@/components/posts-section'
 import Ribbon from '@/components/ribbon'
-import PostsSectionSecondary from '@/components/posts-section-secondary'
-import Link from 'next/link'
-import Image from 'next/image'
-
 import LatestPosts from '@/components/home/latest-posts'
 import Articles from '@/components/home/articles'
+import PostsSection from '@/components/posts-section'
 import Categories from '@/components/home/categories'
+
 const Home = async () => {
 	const currentGame = await getCurrentGame()
 
@@ -38,6 +37,7 @@ const Home = async () => {
 			{/* finished */}
 			<Articles preheading='"publicystyka"' heading='Polecane artykuły' posts={articles} />
 
+			{/* finished */}
 			<PostsSection
 				preheading='giereczki'
 				heading='Najnowsze recenzje'
