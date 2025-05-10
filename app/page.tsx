@@ -14,12 +14,13 @@ const Home = async () => {
 	const nextGame = await getNextGame()
 
 	const featuredPosts = await getPosts({
-		filter: { featured: { _eq: true } },
+		filter: { status: { _eq: 'published' }, featured: { _eq: true } },
 		fields: ['title', 'date_created', 'slug', 'thumbnail', 'description'],
 		limit: 6,
 	})
 
 	const latestPosts = await getPosts({
+		filter: { status: { _eq: 'published' } },
 		fields: [
 			'title',
 			'date_created',
@@ -34,13 +35,13 @@ const Home = async () => {
 	})
 
 	const articles = await getPosts({
-		filter: { type: { slug: { _eq: 'artykul' } } },
+		filter: { status: { _eq: 'published' }, type: { slug: { _eq: 'artykul' } } },
 		fields: ['title', 'slug', 'thumbnail', 'description'],
 		limit: 2,
 	})
 
 	const reviews = await getPosts({
-		filter: { type: { slug: { _eq: 'recenzja' } } },
+		filter: { status: { _eq: 'published' }, type: { slug: { _eq: 'recenzja' } } },
 		fields: [
 			'title',
 			'date_created',

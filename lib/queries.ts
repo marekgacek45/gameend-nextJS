@@ -1,34 +1,19 @@
 import { Game, Post } from '@/types'
-import type { Filter } from '@directus/types';
+import type { Filter } from '@directus/types'
 
 import directus from '@/lib/directus'
-import { readItems} from '@directus/sdk';
+import { readItems } from '@directus/sdk'
 
+export interface ItemsQuery {
+	filter?: Filter
+	fields?: Array<string>
+	limit?: number
+	offset?: number
+}
 
-
-type GetPostsParams = {
-	filter?: Filter;
-	limit?: number;
-	fields?: (keyof Post | string)[];
-  };
-	  
-	  export const getPosts = async ({ filter = {}, limit, fields }: GetPostsParams = {}) => {
-		return await directus.request<Post[]>(
-		  readItems('posts', {
-			filter: {
-			  _and: [
-				{ status: { _eq: 'published' } },
-				filter,
-			  ],
-			},
-			sort: ['-date_created'],
-			fields,
-			limit,
-		  })
-		);
-	  };
-
-
+export const getPosts = async (options?: ItemsQuery) => {
+	return await directus.request<Post[]>(readItems('posts', options))
+}
 
 export const getCurrentGame = async () => {
 	const games = await directus.request<Game[]>(
