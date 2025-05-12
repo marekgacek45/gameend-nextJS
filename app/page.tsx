@@ -8,6 +8,7 @@ import LatestPosts from '@/components/home/latest-posts'
 import Articles from '@/components/home/articles'
 import PostsSection from '@/components/posts-section'
 import Categories from '@/components/home/categories'
+import ROUTES from '@/lib/routes'
 
 const Home = async () => {
 	const currentGame = await getCurrentGame()
@@ -35,13 +36,13 @@ const Home = async () => {
 	})
 
 	const articles = await getPosts({
-		filter: { status: { _eq: 'published' }, type: { slug: { _eq: 'artykul' } } },
+		filter: { status: { _eq: 'published' }, type: { slug: { _eq: 'teksty' } } },
 		fields: ['title', 'slug', 'thumbnail', 'description'],
 		limit: 2,
 	})
 
 	const reviews = await getPosts({
-		filter: { status: { _eq: 'published' }, type: { slug: { _eq: 'recenzja' } } },
+		filter: { status: { _eq: 'published' }, type: { slug: { _eq: 'recenzje' } } },
 		fields: [
 			'title',
 			'date_created',
@@ -74,7 +75,7 @@ const Home = async () => {
 			<PostsSection
 				preheading='giereczki'
 				heading='Najnowsze recenzje'
-				link='#'
+				link={ROUTES.blog.category('recenzje')}
 				posts={reviews}
 				color=''
 				cardColor='bg-white'

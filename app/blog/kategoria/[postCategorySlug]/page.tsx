@@ -1,18 +1,34 @@
 import Categories from '@/components/home/categories'
 import Pagination from '@/components/pagination'
 import PostsSection from '@/components/posts-section'
-import directus from '@/lib/directus'
 import { getPosts } from '@/lib/queries'
-import { aggregate } from '@directus/sdk'
 import React from 'react'
 
-const Blog = async ({ searchParams }) => {
+type Props = {
+	params: { postCategorySlug: string; page: string }
+	searchParams: { page: string }
+}
+
+const Page = async ({ searchParams, params }: Props) => {
+	const postCategorySlug = params.postCategorySlug
 	const page = parseInt(searchParams.page) || 1
-	const limit = 1
+	const limit = 12
 	const offset = (page - 1) * limit
 
+	const postCount = await getPosts({
+		filter: { status: { _eq: 'published' }, type: { slug: { _eq: postCategorySlug } } },
+		fields: ['id'],
+	})
+
 	const posts = await getPosts({
-		filter: { status: { _eq: 'published' } },
+		filter: {
+			status: { _eq: 'published' },
+			categories: {
+				post_categories_id: {
+					slug: { _eq: postCategorySlug },
+				},
+			},
+		},
 		fields: [
 			'title',
 			'date_created',
@@ -29,34 +45,21 @@ const Blog = async ({ searchParams }) => {
 		offset,
 	})
 
-	const getTotalPropertiesCount = async () => {
-		const groupedCounts = await directus.request(
-			aggregate('posts', {
-				aggregate: { count: '*' },
-				groupBy: ['status'],
-			})
-		)
-
-		const publishedGroup = groupedCounts.find(g => g.status === 'published')
-		return publishedGroup?.count || 0
-	}
-
-	const totalCount = await getTotalPropertiesCount()
+	const totalCount = postCount.length
 	const totalPages = Math.ceil(totalCount / limit)
 
 	return (
 		<>
 			{/* finished */}
 			<PostsSection
-				preheading='giereczki'
-				heading='Wszystkie wpisy'
-				
+				preheading='gameend'
+				heading={`Kategoria: ${postCategorySlug}`}
 				posts={posts}
 				color='!pt-0'
 				cardColor='bg-white'
 			/>
 
-  <Pagination currentPage={page} totalPages={totalPages} />
+			<Pagination currentPage={page} totalPages={totalPages} />
 
 			{/* finished */}
 			<Categories />
@@ -64,4 +67,4 @@ const Blog = async ({ searchParams }) => {
 	)
 }
 
-export default Blog
+export default Page

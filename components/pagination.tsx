@@ -1,12 +1,14 @@
+//finished
+
 'use client'
 
 import { useSearchParams, useRouter } from 'next/navigation'
 import { useTransition } from 'react'
 
-import chevronRight from '@/public/assets/icons/chevron-right.svg'
-import chevronLeft from '@/public/assets/icons/chevron-left.svg'
 import Image from 'next/image'
 
+import chevronRight from '@/public/assets/icons/chevron-right.svg'
+import chevronLeft from '@/public/assets/icons/chevron-left.svg'
 
 export default function Pagination({ currentPage, totalPages }: { currentPage: number; totalPages: number }) {
 	const searchParams = useSearchParams()
@@ -21,23 +23,17 @@ export default function Pagination({ currentPage, totalPages }: { currentPage: n
 		})
 	}
 
-	// Generowanie przycisków stron
-	const pageNumbers = []
+	const pageNumbers: number[] = []
 
-	// Dodajemy zawsze pierwszą stronę
 	pageNumbers.push(1)
-
-	// Dodajemy dwie strony przed i dwie strony po aktualnej, jeśli to możliwe
 	for (let i = Math.max(2, currentPage - 2); i <= Math.min(totalPages - 1, currentPage + 2); i++) {
 		pageNumbers.push(i)
 	}
 
-	// Dodajemy zawsze ostatnią stronę, jeśli nie jest już w liście
 	if (!pageNumbers.includes(totalPages)) {
 		pageNumbers.push(totalPages)
 	}
 
-	// Dodajemy wielokropek, jeśli trzeba
 	const renderPageNumbers = pageNumbers.map((page, index) => (
 		<>
 			{index > 0 && page !== pageNumbers[index - 1] + 1 && (
@@ -49,37 +45,38 @@ export default function Pagination({ currentPage, totalPages }: { currentPage: n
 				key={page}
 				onClick={() => handlePageChange(page)}
 				disabled={isPending}
-				// variant={page === currentPage ? 'outline' : 'default'}
-				className={
+				aria-label={`Strona ${page}`}
+				className={`px-2 py-1 cursor-pointer custom-border font-accent text-sm ${
 					page === currentPage
-						? 'bg-nintendo-red text-white border-primary-400 px-2 py-1 cursor-pointer custom-border font-accent text-sm'
-						: 'bg-ownYellow-400 text-black px-2 py-1 cursor-pointer custom-border font-accent text-sm hover:bg-ownPurple-400 hover:text-font-light'
-				}>
+						? 'bg-nintendo-red text-white border-primary-400'
+						: 'bg-ownYellow-400 text-black hover:bg-ownPurple-400 hover:text-font-light'
+				}`}>
 				{page}
 			</button>
 		</>
 	))
 
 	return (
-		<nav className='flex gap-4 justify-center items-center pb-16'>
-			{/* Przycisk "Poprzednia" */}
-			<button
-				className='bg-transparent text-black px-2 py-1 cursor-pointer group'
-				onClick={() => handlePageChange(currentPage - 1)}
-				disabled={currentPage <= 1 || isPending}>
-				<Image src={chevronLeft}  alt="" className='group-hover:scale-110'/>
-			</button>
+		totalPages > 1 && (
+			<nav className='flex gap-4 justify-center items-center pb-16'>
+				<button
+					className='px-2 py-1 bg-transparent text-black  cursor-pointer group'
+					onClick={() => handlePageChange(currentPage - 1)}
+					disabled={currentPage <= 1 || isPending}
+					aria-label='Poprzednia'>
+					<Image src={chevronLeft} alt='' className='group-hover:scale-110' />
+				</button>
 
-			{/* Generowanie przycisków z numerami stron */}
-			{renderPageNumbers}
+				{renderPageNumbers}
 
-			{/* Przycisk "Następna" */}
-			<button
-				className='bg-transparent text-black px-2 py-1 cursor-pointer group'
-				onClick={() => handlePageChange(currentPage + 1)}
-				disabled={currentPage >= totalPages || isPending}>
-			<Image src={chevronRight}  alt="" className='group-hover:scale-110'/>
-			</button>
-		</nav>
+				<button
+					className='px-2 py-1 bg-transparent text-black  cursor-pointer group'
+					onClick={() => handlePageChange(currentPage + 1)}
+					disabled={currentPage >= totalPages || isPending}
+					aria-label='Następna'>
+					<Image src={chevronRight} alt='' className='group-hover:scale-110' />
+				</button>
+			</nav>
+		)
 	)
 }

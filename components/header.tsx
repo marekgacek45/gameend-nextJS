@@ -7,6 +7,7 @@ import logo from '@/public/assets/logo.png'
 import { usePathname } from 'next/navigation'
 import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
 import  Menu  from 'pixelarticons/svg/menu.svg'
+import ROUTES from '@/lib/routes'
 
 
 
@@ -17,9 +18,9 @@ const Header = () => {
 	const links = [
 	
 		{ name: 'Blog', href: '/blog' },
-		{ name: 'Nintendo', href: '/blog/nintendo' },
-		{ name: 'PlayStation', href: '/blog/play-station' },
-		{ name: 'Artykuły', href: '/blog/artykuly' },
+		{ name: 'Nintendo', href: ROUTES.blog.category('nintendo') },
+		{ name: 'PlayStation', href: ROUTES.blog.category('playstation') },
+		{ name: 'Teksty', href: ROUTES.blog.type('teksty') },
 		{ name: 'Sklepik', href: 'https://www.olx.pl/oferty/uzytkownik/2Mdl13/?tab=ads' },
 	]
 

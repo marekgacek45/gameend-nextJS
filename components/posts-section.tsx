@@ -8,7 +8,7 @@ import Heading from '@/components/heading'
 type Props = {
 	preheading: string
 	heading: string
-	link: string
+	link?: string
 	posts: Post[]
 	color?: string
 	lightArrow?: boolean
