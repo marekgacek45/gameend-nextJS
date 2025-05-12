@@ -69,13 +69,13 @@ const Home = async () => {
 			<LatestPosts preheading='zawsze coś ciekawego' heading='Najświeższe posty' posts={latestPosts} />
 
 			{/* finished */}
-			<Articles preheading='"publicystyka"' heading='Polecane artykuły' posts={articles} />
+			<Articles preheading='"publicystyka"' heading='Polecane teksty' posts={articles} />
 
 			{/* finished */}
 			<PostsSection
 				preheading='giereczki'
 				heading='Najnowsze recenzje'
-				link={ROUTES.blog.category('recenzje')}
+				link={ROUTES.blog.type('recenzje')}
 				posts={reviews}
 				color=''
 				cardColor='bg-white'

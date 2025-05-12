@@ -1,35 +1,33 @@
 'use client'
 
+import ROUTES from '@/lib/routes'
+
 import Image from 'next/image'
 import Link from 'next/link'
 
 import logo from '@/public/assets/logo.png'
 import { usePathname } from 'next/navigation'
 import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
-import  Menu  from 'pixelarticons/svg/menu.svg'
-import ROUTES from '@/lib/routes'
-
-
-
+import Menu from 'pixelarticons/svg/menu.svg'
 
 const Header = () => {
 	const pathname = usePathname()
 
 	const links = [
-	
 		{ name: 'Blog', href: '/blog' },
 		{ name: 'Nintendo', href: ROUTES.blog.category('nintendo') },
 		{ name: 'PlayStation', href: ROUTES.blog.category('playstation') },
 		{ name: 'Teksty', href: ROUTES.blog.type('teksty') },
-		{ name: 'Sklepik', href: 'https://www.olx.pl/oferty/uzytkownik/2Mdl13/?tab=ads' },
+		{ name: 'Sklepik', href: ROUTES.vinted, target: true },
 	]
 
 	return (
 		<header className='bg-white  fixed left-0 right-0 top-0 z-50'>
 			<div className='border-b-3 border-black  flex justify-between items-center max-w-screen-max mx-auto max:border-x-2 h-[80px]'>
 				<div className='px-8 border-r-3 border-black  flex justify-center items-center h-full '>
-					<Link href='/'>
+					<Link href='/' className='flex justify-center items-center gap-4'>
 						<Image src={logo} alt='gamened.pl' width={60} height={60} className='size-15 ' />
+						<span className='font-accent text-sm'>gameend.pl</span>
 					</Link>
 				</div>
 
@@ -38,7 +36,11 @@ const Header = () => {
 						<ul className='flex justify-center items-center gap-8'>
 							{links.map(link => (
 								<li key={link.name}>
-									<Link href={link.href} className={` ${pathname === link.href ? 'nav-link--active' : 'nav-link'}`}>
+									<Link
+										href={link.href}
+										className={` ${pathname === link.href ? 'nav-link--active' : 'nav-link'}`}
+										target={link.target ? '_blank' : undefined}
+										rel={link.target ? 'noreferrer nofollow' : undefined}>
 										{link.name}
 									</Link>
 								</li>
@@ -84,10 +86,7 @@ const Header = () => {
 							</SheetContent>
 						</Sheet>
 					</div>
-
-					
 				</div>
-
 			</div>
 		</header>
 	)

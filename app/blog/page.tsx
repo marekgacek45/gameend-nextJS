@@ -1,15 +1,24 @@
-import Categories from '@/components/home/categories'
-import Pagination from '@/components/pagination'
-import PostsSection from '@/components/posts-section'
-import directus from '@/lib/directus'
-import { getPosts } from '@/lib/queries'
-import { aggregate } from '@directus/sdk'
-import React from 'react'
+//finished
 
-const Blog = async ({ searchParams }) => {
+import { getPosts } from '@/lib/queries'
+
+import PostsSection from '@/components/posts-section'
+import Pagination from '@/components/pagination'
+import Categories from '@/components/home/categories'
+
+type Props = {
+	searchParams: { page: string }
+}
+
+const Blog = async ({ searchParams }: Props) => {
 	const page = parseInt(searchParams.page) || 1
 	const limit = 1
 	const offset = (page - 1) * limit
+
+	const postCount = await getPosts({
+		filter: { status: { _eq: 'published' } },
+		fields: ['id'],
+	})
 
 	const posts = await getPosts({
 		filter: { status: { _eq: 'published' } },
@@ -29,34 +38,16 @@ const Blog = async ({ searchParams }) => {
 		offset,
 	})
 
-	const getTotalPropertiesCount = async () => {
-		const groupedCounts = await directus.request(
-			aggregate('posts', {
-				aggregate: { count: '*' },
-				groupBy: ['status'],
-			})
-		)
-
-		const publishedGroup = groupedCounts.find(g => g.status === 'published')
-		return publishedGroup?.count || 0
-	}
-
-	const totalCount = await getTotalPropertiesCount()
+	const totalCount = await postCount.length
 	const totalPages = Math.ceil(totalCount / limit)
 
 	return (
 		<>
 			{/* finished */}
-			<PostsSection
-				preheading='giereczki'
-				heading='Wszystkie wpisy'
-				
-				posts={posts}
-				color='!pt-0'
-				cardColor='bg-white'
-			/>
+			<PostsSection preheading='giereczki' heading='Wszystkie wpisy' posts={posts} color='!pt-0' cardColor='bg-white' />
 
-  <Pagination currentPage={page} totalPages={totalPages} />
+			{/* finished */}
+			<Pagination currentPage={page} totalPages={totalPages} />
 
 			{/* finished */}
 			<Categories />

@@ -1,8 +1,10 @@
-import Categories from '@/components/home/categories'
-import Pagination from '@/components/pagination'
-import PostsSection from '@/components/posts-section'
+{/* finished */}
+
 import { getPosts } from '@/lib/queries'
-import React from 'react'
+
+import PostsSection from '@/components/posts-section'
+import Pagination from '@/components/pagination'
+import Categories from '@/components/home/categories'
 
 type Props = {
 	params: { postCategorySlug: string; page: string }
@@ -59,6 +61,7 @@ const Page = async ({ searchParams, params }: Props) => {
 				cardColor='bg-white'
 			/>
 
+			{/* finished */}
 			<Pagination currentPage={page} totalPages={totalPages} />
 
 			{/* finished */}

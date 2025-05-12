@@ -37,7 +37,7 @@ const Articles = ({ preheading, heading, posts }: Props) => {
 						<h3 className='text-3xl 2xl:text-4xl  font-accent  font-bold uppercase'>GROWE POGADANKI</h3>
 
 						<Link
-							href={ROUTES.blog.category('artykuły')}
+							href={ROUTES.blog.type('teksty')}
 							className=' flex justify-center items-center gap-2 p-3 px-8 border-3 rounded-md border-black bg-ownYellow-400  uppercase font-medium group overflow-hidden'>
 							<Image
 								src={arrowRightIcon}
