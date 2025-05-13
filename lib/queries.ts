@@ -15,6 +15,28 @@ export const getPosts = async (options?: ItemsQuery) => {
 	return await directus.request<Post[]>(readItems('posts', options))
 }
 
+export const getPostBySlug = async (slug: string) => {
+	const filterPosts = await directus.request(
+		readItems('posts', {
+			filter: { slug: { _eq: slug } },
+
+			fields: [
+				'date_created',
+				'title',
+				'thumbnail',
+				'description',
+				'content',
+				'type.*',
+				'categories.*',
+				'categories.post_categories_id.title',
+				'categories.post_categories_id.slug',
+			],
+		})
+	)
+
+	return filterPosts[0]
+}
+
 export const getCurrentGame = async () => {
 	const games = await directus.request<Game[]>(
 		readItems('games', {

@@ -18,7 +18,7 @@ const Heading = ({ preheading, heading, link, lightArrow }: Props) => {
 		<div className='flex flex-col lg:flex-row justify-between gap-8 lg:gap-0'>
 			<div className='flex flex-col gap-6'>
 				<span className='uppercase font-semibold font-accent'>({preheading})</span>
-				<h2 className='text-5xl font-heading font-black uppercase text'>{heading}</h2>
+				<h2 className='text-5xl font-heading font-black uppercase'>{heading}</h2>
 			</div>
 
 			{link && (

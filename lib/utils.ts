@@ -16,3 +16,7 @@ export const formatDate = (date:string) => {
 export const getAssetUrl = (thumbnail: string) => {
 	return `https://studio.gameend.pl/assets/${thumbnail}`;
 };
+
+export const truncateTitle = (title: string) => {
+  return title.length > 15 ? title.slice(0, 15) + '...' : title;
+}

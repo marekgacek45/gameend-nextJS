@@ -26,7 +26,7 @@ const PostCard = ({ post: {  title, slug, date_created,description,thumbnail,typ
 			<div className='absolute inset-0  bg-black rounded-lg z-10'></div>
 
 			<Link
-				href={ROUTES.blog.post(slug)}
+				href={ROUTES.blog.post(type.slug, slug)}
 				className={` relative  block  hover:-translate-y-1 hover:translate-x-1 duration-300 group z-10 custom-border ${color}`}>
 				<div className=' flex flex-col justify-start items-start gap-3 p-3 '>
 					<Image
@@ -34,7 +34,7 @@ const PostCard = ({ post: {  title, slug, date_created,description,thumbnail,typ
 						alt={title}
 						width={350}
 						height={250}
-						className=' w-full max-h-[250px] object-cover object-center custom-border'
+						className=' w-full h-[250px] object-cover object-center custom-border'
 					/>
 
 					

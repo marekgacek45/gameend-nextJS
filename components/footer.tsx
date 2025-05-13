@@ -10,7 +10,7 @@ const Footer = () => {
 
 	return (
 		<footer>
-			<div className='relative mt-12'>
+			<div className='relative '>
 				<div className='absolute inset-0 '>
 					<Ribbon
 						speed={15}

@@ -10,7 +10,7 @@ import Link from 'next/link'
 
 import Badge from '@/components/badge'
 
-const PostCardSmall = ({ post: { title, slug, date_created, thumbnail, categories } }: { post: Post }) => {
+const PostCardSmall = ({ post: { title, slug, date_created, thumbnail,type, categories } }: { post: Post }) => {
 	const postCategories = categories.map(category => {
 		return category.post_categories_id
 	})
@@ -20,7 +20,7 @@ const PostCardSmall = ({ post: { title, slug, date_created, thumbnail, categorie
 			<div className='absolute inset-0  bg-black rounded-lg -z-10'></div>
 
 			<Link
-				href={ROUTES.blog.post(slug)}
+				href={ROUTES.blog.post(type.slug, slug)}
 				className=' relative block bg-white  hover:-translate-y-1 hover:translate-x-1 duration-300  group  z-10 custom-border'>
 				<div className='flex flex-col justify-start items-start gap-3  p-3 '>
 					<Image

@@ -18,6 +18,7 @@ const Header = () => {
 		{ name: 'Nintendo', href: ROUTES.blog.category('nintendo') },
 		{ name: 'PlayStation', href: ROUTES.blog.category('playstation') },
 		{ name: 'Teksty', href: ROUTES.blog.type('teksty') },
+		{ name: 'Recenzje', href: ROUTES.blog.type('recenzje') },
 		{ name: 'Sklepik', href: ROUTES.vinted, target: true },
 	]
 
@@ -25,14 +26,14 @@ const Header = () => {
 		<header className='bg-white  fixed left-0 right-0 top-0 z-50'>
 			<div className='border-b-3 border-black  flex justify-between items-center max-w-screen-max mx-auto max:border-x-2 h-[80px]'>
 				<div className='px-8 border-r-3 border-black  flex justify-center items-center h-full '>
-					<Link href='/' className='flex justify-center items-center gap-4'>
+					<Link href={ROUTES.home} className='flex justify-center items-center gap-4'>
 						<Image src={logo} alt='gamened.pl' width={60} height={60} className='size-15 ' />
 						<span className='font-accent text-sm'>gameend.pl</span>
 					</Link>
 				</div>
 
-				<div className='border-l-3 border-black   h-full flex justify-center items-center'>
-					<nav className=' hidden lg:flex px-8'>
+				<div className='  h-full flex justify-center items-center'>
+					<nav className=' hidden xl:flex px-8'>
 						<ul className='flex justify-center items-center gap-8'>
 							{links.map(link => (
 								<li key={link.name}>
@@ -48,7 +49,7 @@ const Header = () => {
 						</ul>
 					</nav>
 
-					<div className='lg:hidden px-8 order-1'>
+					<div className='xl:hidden px-8 order-1'>
 						<Sheet>
 							<SheetTrigger
 								aria-label='Otwórz menu'
@@ -87,6 +88,8 @@ const Header = () => {
 						</Sheet>
 					</div>
 				</div>
+
+				
 			</div>
 		</header>
 	)

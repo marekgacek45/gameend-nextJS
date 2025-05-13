@@ -10,7 +10,7 @@ import Link from 'next/link'
 
 import arrowRight from '@/public/assets/icons/arrow-right.svg'
 
-const FeaturedPost = ({ post: { title, slug, thumbnail, description } }: { post: Post }) => {
+const FeaturedPost = ({ post: { title, slug, thumbnail, description,type } }: { post: Post }) => {
 	return (
 		<div className='flex flex-col w-full h-full  custom-border cursor-pointer'>
 			<div className='relative flex-grow flex w-full h-[77%] border-b-3 border-black '>
@@ -34,7 +34,7 @@ const FeaturedPost = ({ post: { title, slug, thumbnail, description } }: { post:
 						{description}
 					</p>
 					<Link
-						href={ROUTES.blog.post(slug)}
+						href={ROUTES.blog.post(type.slug, slug)}
 						className='flex md:hidden justify-center items-center gap-3   text-center  group'>
 						<span className='text-sm sm:text-base font-accent  font-semibold uppercase '>Zobacz</span>
 						<div className='p-1   group-hover:-rotate-45 duration-300 size-8 '>
@@ -44,7 +44,7 @@ const FeaturedPost = ({ post: { title, slug, thumbnail, description } }: { post:
 				</div>
 				<div className='hidden md:flex justify-start  md:justify-center items-center flex-grow-0 bg-white'>
 					<Link
-						href={ROUTES.blog.post(slug)}
+						href={ROUTES.blog.post(type.slug, slug)}
 						className='flex justify-center items-center gap-3 p-3 px-5 md:px-12  text-center  group'>
 						<span className='text-sm sm:text-base font-accent  font-semibold uppercase '>Zobacz</span>
 						<div className='p-1 bg-black rounded-full  group-hover:-rotate-45 duration-300 size-6 sm:size-8 '>

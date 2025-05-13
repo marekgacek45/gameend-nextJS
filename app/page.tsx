@@ -16,7 +16,7 @@ const Home = async () => {
 
 	const featuredPosts = await getPosts({
 		filter: { status: { _eq: 'published' }, featured: { _eq: true } },
-		fields: ['title', 'date_created', 'slug', 'thumbnail', 'description'],
+		fields: ['title', 'date_created', 'slug', 'thumbnail', 'description','type.*'],
 		limit: 6,
 	})
 
@@ -37,7 +37,7 @@ const Home = async () => {
 
 	const articles = await getPosts({
 		filter: { status: { _eq: 'published' }, type: { slug: { _eq: 'teksty' } } },
-		fields: ['title', 'slug', 'thumbnail', 'description'],
+		fields: ['title', 'slug', 'thumbnail', 'description','type.*'],
 		limit: 2,
 	})
 

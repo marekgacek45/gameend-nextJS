@@ -14,13 +14,14 @@ type Props = {
 	title: string
 	type: {
 		title: string
+		slug: string
 	}
 	date_created: string
 }
 
 const PostCardBig = ({ post: { slug,thumbnail, title, type, date_created } }: { post: Props }) => {
 	return (
-		<Link href={ROUTES.blog.post(slug)} className='lg:col-span-3 relative z-10  group '>
+		<Link href={ROUTES.blog.post(type.slug, slug)} className='lg:col-span-3 relative z-10  group '>
 			<Image
 				src={getAssetUrl(thumbnail)}
 				alt={title}
