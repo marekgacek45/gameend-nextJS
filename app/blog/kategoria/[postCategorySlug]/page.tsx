@@ -1,4 +1,8 @@
-{/* finished */}
+{
+	/* finished */
+}
+
+import { notFound } from 'next/navigation'
 
 import { getPosts } from '@/lib/queries'
 
@@ -14,13 +18,24 @@ type Props = {
 const Page = async ({ searchParams, params }: Props) => {
 	const postCategorySlug = params.postCategorySlug
 	const page = parseInt(searchParams.page) || 1
-	const limit = 12
+	const limit = 1
 	const offset = (page - 1) * limit
 
 	const postCount = await getPosts({
-		filter: { status: { _eq: 'published' }, type: { slug: { _eq: postCategorySlug } } },
+		filter: {
+			status: { _eq: 'published' },
+			categories: {
+				post_categories_id: {
+					slug: { _eq: postCategorySlug },
+				},
+			},
+		},
 		fields: ['id'],
 	})
+
+	if (postCount.length === 0) {
+		return notFound()
+	}
 
 	const posts = await getPosts({
 		filter: {
@@ -49,6 +64,8 @@ const Page = async ({ searchParams, params }: Props) => {
 
 	const totalCount = postCount.length
 	const totalPages = Math.ceil(totalCount / limit)
+
+	console.log('TotalCOunt', totalCount)
 
 	return (
 		<>

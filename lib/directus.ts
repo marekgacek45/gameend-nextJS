@@ -1,6 +1,8 @@
 import { createDirectus, rest } from '@directus/sdk';
 
-const directus = createDirectus(process.env.DIRECTUS_API_ENDPOINT!).with(
+import config from '@/lib/config';
+
+const directus = createDirectus(config.env.directusEndpoint).with(
     rest({
         onRequest: options => ({ ...options, cache: 'no-store' }),
     })

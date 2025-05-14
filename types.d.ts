@@ -1,26 +1,31 @@
-export interface Post  {
+export interface Post {
 	id: string
 	title: string
 	slug: string
 	description: string
 	thumbnail: string
-    featured: boolean
+	featured: boolean
 	date_created: string
-	type: {
+	content: string
+	type: PostType
+	categories: PostCategory[]
+}
+
+export interface PostType {
+	id: string
+	title: string
+	slug: string
+}
+
+export interface PostCategory {
+	id: string
+	title: string
+	slug: string
+	post_categories_id: {
 		id: string
 		title: string
 		slug: string
 	}
-	categories: {
-		id: string
-		title: string
-		slug: string
-		post_categories_id: {
-			id: string
-			title: string
-			slug: string
-		}
-	}[]
 }
 
 export interface Game {
@@ -28,4 +33,5 @@ export interface Game {
 	next_to_play: boolean
 	cover: string
 	title: string
-	platform: string}
+	platform: string
+}

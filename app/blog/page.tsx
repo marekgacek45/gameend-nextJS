@@ -12,7 +12,7 @@ type Props = {
 
 const Blog = async ({ searchParams }: Props) => {
 	const page = parseInt(searchParams.page) || 1
-	const limit = 1
+	const limit = 12
 	const offset = (page - 1) * limit
 
 	const postCount = await getPosts({

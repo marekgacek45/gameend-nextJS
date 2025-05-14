@@ -1,5 +1,7 @@
 import type { NextConfig } from 'next'
 
+import config from '@/lib/config'
+
 const nextConfig: NextConfig = {
 	typescript: {
 		ignoreBuildErrors: true,
@@ -13,7 +15,7 @@ const nextConfig: NextConfig = {
 		remotePatterns: [
 			{
 				protocol: 'https',
-				hostname: process.env.DIRECTUS_API_ENDPOINT!.replace('https://', ''),
+				hostname: config.env.directusEndpoint.replace('https://', ''),
 			},
 		],
 	},

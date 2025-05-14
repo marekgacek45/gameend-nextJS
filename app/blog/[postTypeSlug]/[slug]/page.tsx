@@ -2,13 +2,13 @@ import Badge from '@/components/badge'
 import { getPostBySlug, getPosts } from '@/lib/queries'
 import ROUTES from '@/lib/routes'
 import { formatDate, getAssetUrl, truncateTitle } from '@/lib/utils'
-import { Post } from '@/types'
+
 
 import Image from 'next/image'
 import Link from 'next/link'
 import chevronRight from '@/public/assets/icons/chevron-right.svg'
 import PostsSection from '@/components/posts-section'
-import { truncate } from 'fs'
+import { notFound } from 'next/navigation'
 
 type Props = {
 	params: {
@@ -21,7 +21,13 @@ const Page = async ({ params }: Props) => {
 	const slug = params.slug
 	const postType = params.postTypeSlug
 
-	const { thumbnail, title, type, categories, description, content, date_created }: Post = await getPostBySlug(slug)
+	const post = await getPostBySlug(slug)
+
+	if (!post) {
+		return notFound()
+	}
+
+	const { thumbnail, title, type, categories, description, content, date_created } = post
 
 	const otherPosts = await getPosts({
 		filter: { status: { _eq: 'published' }, slug: { _neq: slug } },

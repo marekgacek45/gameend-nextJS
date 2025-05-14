@@ -1,8 +1,9 @@
+import { notFound } from 'next/navigation'
+import { getPosts } from '@/lib/queries'
+
 import Categories from '@/components/home/categories'
 import Pagination from '@/components/pagination'
 import PostsSection from '@/components/posts-section'
-import { getPosts } from '@/lib/queries'
-import React from 'react'
 
 type Props = {
 	params: { postTypeSlug: string; page: string }
@@ -19,6 +20,10 @@ const Page = async ({ searchParams, params }: Props) => {
 		filter: { status: { _eq: 'published' }, type: { slug: { _eq: postTypeSlug } } },
 		fields: ['id'],
 	})
+
+	if (postCount.length === 0) {
+		return notFound()
+	}
 
 	const posts = await getPosts({
 		filter: { status: { _eq: 'published' }, type: { slug: { _eq: postTypeSlug } } },

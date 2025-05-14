@@ -1,4 +1,4 @@
-import { Game, Post } from '@/types'
+import { Game, Post, PostCategory, PostType } from '@/types'
 import type { Filter } from '@directus/types'
 
 import directus from '@/lib/directus'
@@ -16,7 +16,7 @@ export const getPosts = async (options?: ItemsQuery) => {
 }
 
 export const getPostBySlug = async (slug: string) => {
-	const filterPosts = await directus.request(
+	const filterPosts = await directus.request<Post[]>(
 		readItems('posts', {
 			filter: { slug: { _eq: slug } },
 
@@ -35,6 +35,22 @@ export const getPostBySlug = async (slug: string) => {
 	)
 
 	return filterPosts[0]
+}
+
+export const getPostTypes = async () => {
+	return await directus.request<PostType[]>(
+		readItems('post_types', {
+			fields: ['slug'],
+		})
+	)
+}
+
+export const getPostCategories = async () => {
+	return await directus.request<PostCategory[]>(
+		readItems('post_categories', {
+			fields: ['slug'],
+		})
+	)
 }
 
 export const getCurrentGame = async () => {

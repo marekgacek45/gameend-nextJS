@@ -1,5 +1,9 @@
 import type { Metadata } from 'next'
 import { Rubik, Roboto_Mono, Press_Start_2P } from 'next/font/google'
+
+import config from '@/lib/config'
+
+
 import Header from '@/components/header'
 import Footer from '@/components/footer'
 
@@ -12,6 +16,7 @@ const rubik = Rubik({
 })
 const robotoMono = Roboto_Mono({
 	weight: ['100', '200', '300', '400', '500', '600', '700'],
+	variable: '--font-roboto-mono',
 	subsets: ['latin'],
 })
 const pressStart = Press_Start_2P({
@@ -22,7 +27,7 @@ const pressStart = Press_Start_2P({
 
 export const metadata: Metadata = {
 	title: {
-		default: 'gameend - blog o grach',
+		default: config.metadata.title,
 		template: '%s | gameend',
 	},
 	description:
@@ -37,24 +42,24 @@ export const metadata: Metadata = {
 	creator: 'Marek Gacek',
 	publisher: 'Marek Gacek',
 	openGraph: {
-		title: 'gameend - blog o grach',
+		title: config.metadata.title,
 		description:
 			'Blog o grach na  nintendo i playstation. Nie ma co więcej nawijać makaronu na uszy :)',
 		type: 'website',
 		locale: 'pl_PL',
-		url: 'https://gameend.pl/',
-		siteName: 'gameend - blog o grach',
+		url: config.env.productionUrl,
+		siteName: config.metadata.title,
 		images: [
 			{
 				url: 'https://gameend.pl/assets/logo.png',
 				width: 1200,
 				height: 630,
-				alt: 'gameend - blog o grach',
+				alt: config.metadata.title,
 			},
 		],
 	},
 	alternates: {
-		canonical: 'https://gameend.pl',
+		canonical: config.env.productionUrl,
 	},
 }
 
