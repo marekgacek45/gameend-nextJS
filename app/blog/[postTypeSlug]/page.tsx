@@ -1,14 +1,40 @@
 import { notFound } from 'next/navigation'
+
+import ROUTES from '@/lib/routes'
+import config from '@/lib/config'
+
 import { getPosts } from '@/lib/queries'
 
 import Categories from '@/components/home/categories'
 import Pagination from '@/components/pagination'
 import PostsSection from '@/components/posts-section'
+import { Metadata } from 'next/types'
 
 type Props = {
 	params: { postTypeSlug: string; page: string }
 	searchParams: { page: string }
 }
+
+
+export async function generateMetadata({ params }: Props): Promise<Metadata | undefined> {
+	const postTypeSlug = params.postTypeSlug
+
+	return {
+		title: postTypeSlug,
+		alternates: {
+			canonical: config.env.productionUrl + ROUTES.blog.type(postTypeSlug),
+		},
+		openGraph: {
+			title: `${postTypeSlug} | ${config.metadata.title}`,
+			description: config.metadata.description,
+			type: 'website',
+			locale: 'pl_PL',
+			url: config.env.productionUrl + ROUTES.blog.type(postTypeSlug),
+			siteName: config.metadata.title,
+		},
+	}
+}
+
 
 const Page = async ({ searchParams, params }: Props) => {
 	const postTypeSlug = params.postTypeSlug

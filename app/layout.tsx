@@ -3,7 +3,6 @@ import { Rubik, Roboto_Mono, Press_Start_2P } from 'next/font/google'
 
 import config from '@/lib/config'
 
-
 import Header from '@/components/header'
 import Footer from '@/components/footer'
 
@@ -28,38 +27,36 @@ const pressStart = Press_Start_2P({
 export const metadata: Metadata = {
 	title: {
 		default: config.metadata.title,
-		template: '%s | gameend',
+		template: `%s | ${config.metadata.title}`,
 	},
-	description:
-		'Blog o grach na  nintendo i playstation. Nie ma co więcej nawijać makaronu na uszy :)',
+	description: config.metadata.description,
 	generator: 'Next.js',
-	applicationName: 'gameend - blog o grach',
+	applicationName: config.metadata.title,
 	referrer: 'origin-when-cross-origin',
 	keywords: [
-		'blog o grach','gry','nintendo','playstation','gameend','blog','gry nintendo','gry playstation','switch',
+		'blog o grach',
+		'gry',
+		'nintendo',
+		'playstation',
+		'gameend',
+		'blog',
+		'gry nintendo',
+		'gry playstation',
+		'switch',
 	],
 	authors: { name: 'Marek Gacek', url: 'https://marekgacekdev.pl' },
 	creator: 'Marek Gacek',
 	publisher: 'Marek Gacek',
+	alternates: {
+		canonical: config.env.productionUrl,
+	},
 	openGraph: {
 		title: config.metadata.title,
-		description:
-			'Blog o grach na  nintendo i playstation. Nie ma co więcej nawijać makaronu na uszy :)',
+		description: config.metadata.description,
 		type: 'website',
 		locale: 'pl_PL',
 		url: config.env.productionUrl,
 		siteName: config.metadata.title,
-		images: [
-			{
-				url: 'https://gameend.pl/assets/logo.png',
-				width: 1200,
-				height: 630,
-				alt: config.metadata.title,
-			},
-		],
-	},
-	alternates: {
-		canonical: config.env.productionUrl,
 	},
 }
 

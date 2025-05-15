@@ -5,9 +5,29 @@ import { getPosts } from '@/lib/queries'
 import PostsSection from '@/components/posts-section'
 import Pagination from '@/components/pagination'
 import Categories from '@/components/home/categories'
+import { Metadata } from 'next'
+import config from '@/lib/config'
+import ROUTES from '@/lib/routes'
 
 type Props = {
 	searchParams: { page: string }
+}
+
+export const metadata: Metadata = {
+	title: 'wszystkie wpisy',
+	description: config.metadata.description,
+	
+	alternates: {
+		canonical: config.env.productionUrl + ROUTES.blog.index,
+	},
+	openGraph: {
+		title: 'blog | ' + config.metadata.title,
+		description: config.metadata.description,
+		type: 'website',
+		locale: 'pl_PL',
+		url:  config.env.productionUrl + ROUTES.blog.index,
+		siteName: config.metadata.title,
+	},
 }
 
 const Blog = async ({ searchParams }: Props) => {

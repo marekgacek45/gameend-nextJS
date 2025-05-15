@@ -11,24 +11,23 @@ const Categories = () => {
 				<CategoryCard
 					link={ROUTES.blog.category('nintendo')}
 					title='Nintendo'
-					cardColor='bg-nintendo-red text-font-light'
+					cardColor='bg-nintendo-red text-font-dark'
 					btnColor='bg-nintendo-blue '
 					lightArrow
 				/>
-
-				<CategoryCard
-					link={ROUTES.blog.category('playstation')}
-					title='Play Station'
-					cardColor='bg-ps-blue text-font-light'
-					btnColor='bg-white text-font-dark'
-				/>
-
 				<CategoryCard
 					link={ROUTES.blog.type('teksty')}
 					title='Teksty'
 					cardColor='bg-ownYellow-400 text-font-dark'
 					btnColor='bg-ownPurple-400 text-font-light '
 					lightArrow
+				/>
+				
+				<CategoryCard
+					link={ROUTES.blog.category('playstation')}
+					title='Play Station'
+					cardColor='bg-ps-blue text-font-light'
+					btnColor='bg-white text-font-dark'
 				/>
 			</div>
 		</section>

@@ -1,19 +1,55 @@
-import Badge from '@/components/badge'
-import { getPostBySlug, getPosts } from '@/lib/queries'
-import ROUTES from '@/lib/routes'
-import { formatDate, getAssetUrl, truncateTitle } from '@/lib/utils'
+import { Metadata } from 'next/types'
+import { notFound } from 'next/navigation'
 
+import ROUTES from '@/lib/routes'
+import config from '@/lib/config'
+
+import { getPostBySlug, getPosts } from '@/lib/queries'
+import { formatDate, getAssetUrl, truncateTitle } from '@/lib/utils'
 
 import Image from 'next/image'
 import Link from 'next/link'
-import chevronRight from '@/public/assets/icons/chevron-right.svg'
+
+import Badge from '@/components/badge'
 import PostsSection from '@/components/posts-section'
-import { notFound } from 'next/navigation'
+
+import chevronRight from '@/public/assets/icons/chevron-right.svg'
 
 type Props = {
 	params: {
 		postTypeSlug: string
 		slug: string
+	}
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata | undefined> {
+	const slug = params.slug
+	const postType = params.postTypeSlug
+
+	const post = await getPostBySlug(slug)
+
+	return {
+		title: post.title,
+		description: post.description,
+		alternates: {
+			canonical: config.env.productionUrl + ROUTES.blog.post(postType, slug),
+		},
+		openGraph: {
+			title: `${post.title} | ${config.metadata.title}`,
+			description: post.description,
+			type: 'article',
+			locale: 'pl_PL',
+			url: config.env.productionUrl + ROUTES.blog.post(postType, slug),
+			siteName: config.metadata.title,
+			images: [
+				{
+					url: getAssetUrl(post.thumbnail),
+					width: 1200,
+					height: 630,
+					alt: `${post.title} | ${config.metadata.title}`,
+				},
+			],
+		},
 	}
 }
 

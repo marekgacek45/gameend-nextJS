@@ -2,7 +2,11 @@
 	/* finished */
 }
 
+import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
+
+import ROUTES from '@/lib/routes'
+import config from '@/lib/config'
 
 import { getPosts } from '@/lib/queries'
 
@@ -13,6 +17,25 @@ import Categories from '@/components/home/categories'
 type Props = {
 	params: { postCategorySlug: string; page: string }
 	searchParams: { page: string }
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata | undefined> {
+	const postCategorySlug = params.postCategorySlug
+
+	return {
+		title: postCategorySlug,
+		alternates: {
+			canonical: config.env.productionUrl + ROUTES.blog.category(postCategorySlug),
+		},
+		openGraph: {
+			title: `${postCategorySlug} | ${config.metadata.title}`,
+			description: config.metadata.description,
+			type: 'website',
+			locale: 'pl_PL',
+			url: config.env.productionUrl + ROUTES.blog.category(postCategorySlug),
+			siteName: config.metadata.title,
+		},
+	}
 }
 
 const Page = async ({ searchParams, params }: Props) => {

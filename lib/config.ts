@@ -5,6 +5,7 @@ const config = {
 	},
     metadata:{
         title: 'gameend - blog o grach',
+		description: 'Blog o grach na  nintendo i playstation. Nie ma co więcej nawijać makaronu na uszy :)',
     }
 }
 
