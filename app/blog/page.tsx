@@ -54,6 +54,7 @@ const Blog = async ({ searchParams }: Props) => {
 			'categories.post_categories_id.title',
 			'categories.post_categories_id.slug',
 		],
+		sort: ['-date_created'],
 		limit,
 		offset,
 	})

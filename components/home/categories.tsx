@@ -13,7 +13,7 @@ const Categories = () => {
 					title='Nintendo'
 					cardColor='bg-nintendo-red text-font-dark'
 					btnColor='bg-nintendo-blue '
-					lightArrow
+					
 				/>
 				<CategoryCard
 					link={ROUTES.blog.type('teksty')}

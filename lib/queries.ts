@@ -7,6 +7,7 @@ import { readItems } from '@directus/sdk'
 export interface ItemsQuery {
 	filter?: Filter
 	fields?: Array<string>
+	sort?: Array<string>
 	limit?: number
 	offset?: number
 }

@@ -17,6 +17,7 @@ const Home = async () => {
 	const featuredPosts = await getPosts({
 		filter: { status: { _eq: 'published' }, featured: { _eq: true } },
 		fields: ['title', 'date_created', 'slug', 'thumbnail', 'description','type.*'],
+		sort: ['-date_created'],
 		limit: 6,
 	})
 
@@ -32,12 +33,14 @@ const Home = async () => {
 			'categories.post_categories_id.title',
 			'categories.post_categories_id.slug',
 		],
+		sort: ['-date_created'],
 		limit: 5,
 	})
 
 	const articles = await getPosts({
 		filter: { status: { _eq: 'published' }, type: { slug: { _eq: 'teksty' } } },
 		fields: ['title', 'slug', 'thumbnail', 'description','type.*'],
+		sort: ['-date_created'],
 		limit: 2,
 	})
 
@@ -55,6 +58,7 @@ const Home = async () => {
 			'categories.post_categories_id.title',
 			'categories.post_categories_id.slug',
 		],
+		sort: ['-date_created'],
 		limit: 4,
 	})
 
