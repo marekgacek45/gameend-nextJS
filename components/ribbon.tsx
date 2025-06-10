@@ -7,11 +7,15 @@ import Marquee from 'react-fast-marquee'
 const Ribbon = ({
 	textFirst,
 	textSecond,
+	textThird,
+	textFourth,
 	className,
 	speed,
 }: {
 	textFirst: string
 	textSecond: string
+	textThird?: string
+	textFourth?: string
 	className?: string
 	speed?: number
 }) => {
@@ -26,6 +30,11 @@ const Ribbon = ({
 					className='mt-1 text-4xl md:text-5xl font-accent font-medium uppercase text-ownPurple-400  tracking-tight'>
 					{textSecond}
 				</span>
+				{textThird &&<span className='text-5xl md:text-6xl font-heading font-bold uppercase text'>• {textThird} •</span>}
+					{textFourth &&<span
+					className='mt-1 text-4xl md:text-5xl font-accent font-medium uppercase text-ownPurple-400  tracking-tight'>
+					{textFourth}
+				</span>}
 			</div>
 		</Marquee>
 	)

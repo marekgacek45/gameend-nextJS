@@ -67,7 +67,7 @@ const Home = async () => {
 			{/* finished */}
 			<Features posts={featuredPosts} currentGame={currentGame} nextGame={nextGame} />
 			{/* finished */}
-			<Ribbon textFirst='blog' textSecond='gameend' />
+			<Ribbon textFirst='blog' textSecond='sklepik' textThird="YouTube" textFourth="gameend"  />
 
 			{/* finished */}
 			<LatestPosts preheading='zawsze coś ciekawego' heading='Najświeższe posty' posts={latestPosts} />

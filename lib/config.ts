@@ -4,8 +4,8 @@ const config = {
 		productionUrl: process.env.NEXT_PUBLIC_PRODUCTION_URL!,
 	},
     metadata:{
-        title: 'gameend - blog o grach',
-		description: 'Blog o grach na  nintendo i playstation. Nie ma co więcej nawijać makaronu na uszy :)',
+        title: 'gameend - nie tylko blog o grach',
+		description: 'Blog o grach na  nintendo i playstation. Oprócz tego kanał na YouTube oraz sklepik z grami!',
     }
 }
 

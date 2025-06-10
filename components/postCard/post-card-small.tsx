@@ -28,7 +28,7 @@ const PostCardSmall = ({ post: { title, slug, date_created, thumbnail,type, cate
 						alt={title}
 						width={350}
 						height={250}
-						className=' w-full max-h-[250px] object-cover object-center custom-border'
+						className=' w-full h-[250px] object-cover object-center custom-border'
 					/>
 
 					<div className='flex flex-wrap justify-start items-center gap-2'>
